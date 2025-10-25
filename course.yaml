@@ -1,8 +1,9 @@
 student:
-  name: "Bilicki Viktor"
-  id: "BILICCI"
+  name: "Galváts Richárd Ákos"
+  id: "HD99H8"
 project:
-  title: "ResearchFlow – szakdolgozatkutatás-támogató webalkalmazás"
+  title: "PetShop – Kisállatokkal kapcsolatos weboldal"
+  track: "Full Stack Development"
   product_ml_features: false
 ai:
   log_min_entries_per_sprint: 3

@@ -1,21 +1,21 @@
 {
-  "id": "INT-005",
-  "date": "2025-02-08",
-  "method": "in_person",
+  "id": "PS-INT-005",
+  "date": "2025-02-19",
+  "method": "telefon",
   "participant": {
-    "pseudonym": "Flóra",
-    "segment": "Doktori előkészítős hallgató"
+    "pseudonym": "Kozmetikus Károly",
+    "segment": "Kutyakozmetikus Szolgáltató"
   },
   "consent": true,
   "insights": [
-    "Saját Notion adatbázist használ, de hiányzik a hivatkozás-ellenőrzés.",
-    "Szüksége van konzulensi státuszriportokra." 
+    "A legtöbb új ügyfelet **szóbeszéd** és Google találatok alapján szerzi, de a Google Vélemények nem kezelhetők jól.",
+    "Szeretné, ha az online listázás nem kerülne sok pénzbe, mint egyes szaknévsorok esetében."
   ],
   "pain_points": [
-    "A jegyzetek megosztása során eltűnnek a kommentek.",
-    "Nincs automatizált értesítés a hiányzó adatokról." 
+    "Nehéz egységesen kezelni a különböző platformokon (Facebook, Google, sárga oldalak) érkező **negatív/pozitív visszajelzéseket**.",
+    "Kevés a lehetőség a vállalkozásának bemutatására speciális kritériumok mentén (pl. 'csak nagytestű kutyákat fogad')."
   ],
   "quotes": [
-    "\"Ha a konzulensem valamit kér, manuálisan kell visszakeresnem a vonatkozó forrásokat.\""
+    "\"Egy olyan felület lenne jó, ahol az értékeléseket egy helyen látom és tudok rá válaszolni. Így nem kellene 5 helyre figyelni.\""
   ]
 }

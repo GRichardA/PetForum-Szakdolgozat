@@ -1,47 +1,47 @@
 meta:
   version: "0.1"
-  last_updated: "2025-02-14"
+  last_updated: "2025-10-25"
 problem:
-  statement: "A magyar mérnökinformatikus hallgatók számára a szakdolgozati források rendszerezése és hivatkozásainak kezelése széttagolt és időrabló feladat, ami csúszásokhoz és minőségi problémákhoz vezet."
+  statement: "A kutyatulajdonosok számára nehéz megbízható és naprakész információkat találni a helyi kutyás szolgáltatásokról (pl. megbízható állatorvos, kutyakozmetikus) és a helyi kutyás eseményekről (pl. találkozók, vásárok) egyetlen áttekinthető platformon."
 target_audience:
   personas:
-    - name: "Anna, a kutató alapszakos"
-      segment: "Harmadéves mérnökinformatikus hallgató, aki a szakdolgozatához gyűjt forrásokat."
+    - name: "Zsuzsa, az Újdonsült Kutyaszülő"
+      segment: "Olyan friss kutyatulajdonos, aki még csak tájékozódik a helyi kisállat-szolgáltatások (állatorvos, iskola) és a termékek piacán."
       needs:
-        - "Gyors forrásgyűjtés megbízható jegyzeteléssel"
-        - "Automatikus hivatkozásgenerálás különböző formátumokhoz"
-        - "Egyszerű együttműködés konzulenssel"
-    - name: "Bence, az esti képzésen"
-      segment: "Munka mellett tanuló levelezős hallgató."
+        - "Megbízható, ellenőrzött szolgáltatói adatbázis (véleményekkel)"
+        - "Áttekintő, kezdő szintű cikkek a kutyanevelésről"
+    - name: "Dávid, az Elkötelezett Kutyás"
+      segment: "Rendszeresen túrázó, vagy speciális hobbival (pl. agility) foglalkozó kutyás, aki közösséget és eseményeket keres."
       needs:
-        - "Időhatékony anyagfeldolgozás"
-        - "Offline hozzáférés a jegyzetekhez"
+        - "Interaktív naptár a helyi kutyás eseményekhez"
+        - "Szűrhető térkép kutyabarát helyekről (éttermek, parkok)"
 value_proposition:
-  concise: "A ResearchFlow egy felhőalapú kutatási munkafolyamat-kezelő, amely összefogja a források gyűjtését, jegyzetelését és hivatkozás-generálását, így a hallgatók 30%-kal gyorsabban tudnak haladni a szakdolgozatukkal a manuális táblázatokhoz képest."
+  concise: "A PetShop egy közösség által támogatott, kisállatokra fókuszáló weboldal, amely központilag gyűjti és rendszerezi a megbízható, helyi szolgáltatók listáját és az események naptárát, így csökkentve az információs zajt a tulajdonosok számára."
   differentiators:
-    - "Kontextusérzékeny MI-ajánlások a jegyzetek rendszerezéséhez"
-    - "Közös munkafelület konzulensi megjegyzésekkel"
+    - "Közösségi értékelések és hitelesítési folyamat a szolgáltatóknál."
+    - "Személyes profilok kutyaprofillal (könnyebb szűrni az eseményeket)."
 scope:
   in:
-    - "Források rögzítése böngészőből vagy kézi űrlapból"
-    - "Jegyzetek és címkék kezelése"
-    - "Automatikus hivatkozás generálás APA és IEEE formátumban"
+    - "Kereshető adatbázis a helyi kutyás szolgáltatókról (név, cím, értékelés)."
+    - "Közösségi tartalom-hozzáadás lehetősége (események, kutyabarát helyek)."
+    - "Alapvető felhasználói profil (név, kutyák száma, hobbi)."
   out:
-    - "Offline desktop alkalmazás"
-    - "Teljes szövegű PDF-szerkesztés"
-    - "Automatikus plágium-ellenőrzés"
+    - "Közvetlen termékvásárlás/Webshop (nem áruház, hanem információs portál)."
+    - "Online foglalási rendszer a szolgáltatókhoz (pl. időpont kérés kozmetikushoz)."
+    - "Beépített üzenetküldő rendszer a felhasználók között."
 success_metrics:
-  - "≥10 korai tesztelő aktívan használja a ResearchFlow-t a szakdolgozat előkészítéséhez."
-  - "A tesztelők átlagos elégedettsége ≥4/5 az onboarding után."
-  - "A forrásbeviteli idő 30%-kal csökken a kontrollcsoporthoz képest."
+  - "≥10 egyedi havi látogató az első hónapban."
+  - "Legalább 20 helyi szolgáltató/esemény hozzáadása a felhasználók által 30 nap alatt."
+  - "A felhasználók átlagos session ideje ≥ 3 perc (az elkötelezettség mérésére)."
+
 risks:
-  - "Adatvédelmi elvárások az egyetemi szabályzatok miatt"
-  - "A felhasználók meglévő munkafolyamatainak megváltoztatása ellenállást válthat ki"
+  - "A helyi szolgáltatók adatainak frissen tartása manuális ellenőrzést igényel."
+  - "Kezdeti nehézségek a kritikus tömeg elérésében a közösségi tartalmak miatt."
 first_tech_decision_ref: "sprints/01/architecture/adr/0001-first-tech-choice.md"
 research_summary:
   insights:
-    - "A hallgatók ~60%-a jelenleg Google Sheetben vezeti a forrásokat, ami nehezen kereshető."
-    - "Az interjúalanyok fele külön eszközt használ jegyzetelésre, ami duplikált munkát okoz."
+    - "A megkérdezett kutyatulajdonosok 80%-a (4/5 fő) elsősorban a Facebook csoportokat használja helyi események és ajánlások keresésére, de a kereshetőséget és a szűrhetőséget gyengének tartja."
+    - "A felhasználók nagy hajlandóságot mutatnak arra, hogy értékeljék a szolgáltatókat, ha a folyamat gyors és intuitív (pl. 1-5 csillag)."
   pain_points:
-    - "Hosszú idő a hivatkozások formázása"
-    - "Nehezen megosztható a konzulensekkel a munka aktuális állapota"
+    - "Nagyon időigényes a megbízható **kutyaiskolák és állatorvosok** felkutatása, mivel a reklámok és a valódi, objektív vélemények nehezen szétválaszthatók az interneten."
+    - "Nehezen található a kisállatokkal való kérdés megtalálása pontosan."

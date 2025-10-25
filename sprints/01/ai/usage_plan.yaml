@@ -1,16 +1,20 @@
 goals:
-  - "Piackutatási cikkek gyors összefoglalása a ResearchFlow témakörében."
-  - "Nyitott interjúkérdés sablonok generálása különböző hallgatói szegmensekhez."
-  - "Versenytárs-összehasonlítás táblázatos formába rendezése."
+  - "Piackutatási trendek és kulcsszavak gyors keresése a kisállat-szolgáltatások (PetShop) témakörében."
+  - "Interjúkérdés sablonok generálása különböző kutyatulajdonosi szegmensekhez (pl. hobbikutyás vs. kezdő kutyaszülő)."
+  - "Versenytárs-összehasonlítás táblázatos formába rendezése és kategóriák definiálása"
+  - "ADR (Architecture Decision Record) sablonok és vázlatok generálása a technológiai döntésekhez."
+  - "A projekt 'megrendelőjének' szimulálása: MI-vel vitatom meg a felmerülő funkciókat és azok üzleti értékét (a 'PetShop ügyfél' szerep)."
+  - "Kód debuggolás és egyszerűsítésére vonatkozó tippek gyűjtése (a következő sprintekre való felkészülés)."
 operational_cadence:
-  check_in: "Heti két alkalommal értékelem az MI-eszközök által adott javaslatokat."
-  review_partner: "A konzulenssel sprintenként egyszer átbeszélem az MI által generált artefaktumokat."
+  check_in: "Minden kutatási lépés (interjú, versenytárs) előtt használom az MI-t ötletelésre, és hetente kétszer összegzem a naplót."
+  review_partner: "Az MI által generált kritikus dokumentumokat (pl. ADR vázlatát) átbeszélem a konzulenssel, mielőtt véglegesítem."
 guardrails:
-  - "Személyes azonosító adatot nem továbbítok külső MI eszköz felé."
-  - "Minden generált tartalmat manuálisan ellenőrzök a felhasználás előtt."
-  - "Érzékeny interjúrészleteket anonimizálok, mielőtt MI-vel elemeztetem."
-tools:
-  - name: "ChatGPT"
-    use_cases: ["cikk összegzés", "interjúkérdés ötletek", "szöveg finomhangolás"]
+  - "Személyes azonosító adatot (PII) nem továbbítok külső MI eszköz felé, még az interjúk anonimizált jegyzőkönyvei esetében sem."
+  - "Minden generált tartalmat manuálisan ellenőrzök és tényekkel támogatok alá (különösen a piaci adatoknál)."
+  - "MI kódgenerálást csak egyszerű, nem kritikus segédszkriptekhez és kódokhoz használok, a fő üzleti logika marad a saját fejlesztésem."
+  - "Az MI által javasolt döntéseket nem fogadom el tényként, csupán egy szempontként kezelem."
+ools:
+  - name: "Gemini / ChatGPT"
+    use_cases: ["Piackutatási cikk összegzés", "Interjúkérdés ötletek", "Megrendelő szimuláció", "Hibakeresés a szkriptekben"]
   - name: "GitHub Copilot"
-    use_cases: ["ADR sablon generálása", "szkriptek kereteinek megírása"]
+    use_cases: ["ADR sablon generálása", "Validációs szkriptek kereteinek megírása", "Kód egyszerűsítés és refaktorálási javaslatok"]
