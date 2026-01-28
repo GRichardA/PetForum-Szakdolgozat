@@ -1,0 +1,21 @@
+{
+  "id": "INT-006",
+  "date": "2025-11-30",
+  "method": "personal",
+  "participant": {
+    "pseudonym": "Gábor",
+    "segment": "Szoftverfejlesztő, kutyás sportok rajongója"
+  },
+  "consent": true,
+  "insights": [
+    "A versenyek és edzések helyszíneit jelenleg Google Maps pinekkel és Excel táblázatokkal követi.",
+    "Fontos számára a kutyája fizikai állapota (pl. futott km, pihenőidők), amit szeretne megosztani az edzőjével is."
+  ],
+  "pain_points": [
+    "Nincs olyan felület, ahol a kutyás sporteseményeknél a pontos koordináták és a pálya talajának minősége is fel lenne tüntetve.",
+    "A legtöbb közösségi oldalon a videók minősége romlik, így nehéz elemezni a kutya mozgását a kommentekben."
+  ],
+  "quotes": [
+    "\"Nekem nem csak egy szép kép kell a kutyáról, hanem az adatok: hol edzettünk, mennyit futott, és ki volt ott még a csapatból.\""
+  ]
+}

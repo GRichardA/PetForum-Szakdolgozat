@@ -1,0 +1,21 @@
+{
+    "id": "INT-005",
+    "date": "2025-11-28",
+    "method": "personal",
+    "participant": {
+      "pseudonym": "Dóra",
+      "segment": "HR menedzser, 'dog-mom' influenszer jelölt"
+    },
+    "consent": true,
+    "insights": [
+      "Szereti dokumentálni a kutyája életének minden pillanatát (születésnap, első úszás).",
+      "Igénye van egy olyan közösségre, ahol nem 'spam' a napi 10 kutyás kép."
+    ],
+    "pain_points": [
+      "Az Instagram algoritmus miatt nem minden ismerőse látja a fontos eseményeket.",
+      "Szeretne kommentben konkrét adatokat (pl. súlygrafikon, étkezési napló) is megosztani másokkal."
+    ],
+    "quotes": [
+      "\"Szeretném, ha a kutyámnak saját digitális naplója lenne, amit más gazdik is követhetnek és inspirálódhatnak belőle.\""
+    ]
+  }

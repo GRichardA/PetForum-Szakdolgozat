@@ -1,0 +1,21 @@
+{
+    "id": "INT-002",
+    "date": "2025-10-24",
+    "method": "online",
+    "participant": {
+      "pseudonym": "Zsuzsi",
+      "segment": "Kutyás tréner, vállalkozó"
+    },
+    "consent": true,
+    "insights": [
+      "Hasznos lenne egy felület, ahol a klienseinek tudna szakmai linkeket és videókat megosztani zárt körben.",
+      "A gazdik gyakran elfelejtik a házi feladatokat, ha csak elmondja nekik."
+    ],
+    "pain_points": [
+      "A kommentek moderálása más platformokon fárasztó és sok a kéretlen reklám.",
+      "Nehéz visszakeresni egy-egy tanítvány korábbi fejlődési mérföldköveit."
+    ],
+    "quotes": [
+      "\"A gazdiknak kellene egy hely, ahol büszkélkedhetnek a sikerekkel, de közben a fontos szakmai anyagokat is elérik egy kattintással.\""
+    ]
+  }

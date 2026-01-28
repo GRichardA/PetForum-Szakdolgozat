@@ -1,0 +1,22 @@
+# Ez a fájl írja le, hogyan fut a projekted a tesztelés alatt
+type: vm_service # Mert AWS EC2-t szimulálunk
+
+build:
+  # Laravel build parancsok (függőségek telepítése)
+  command: "composer install && npm install && npm run build"
+  artifacts: ["vendor", "public", "bootstrap/cache"]
+
+serve:
+  # Itt a trükk: A "serve" parancs a saját gépeden indítja el a szervert a teszthez
+  command: "php artisan serve --port=8000"
+  base_url: "http://127.0.0.1:8000"
+
+smoke:
+  path: "/"
+  expect_status: 200
+
+iac:
+  tool: "terraform"
+  dir: "infra/terraform"
+  plan_out: "infra/terraform/plan.out"
+  notes: "AWS Free Tier infrastruktúra terve (csak plan, nincs apply)"

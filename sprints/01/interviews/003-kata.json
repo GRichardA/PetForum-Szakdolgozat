@@ -1,0 +1,21 @@
+{
+    "id": "INT-003",
+    "date": "2025-11-05",
+    "method": "personal",
+    "participant": {
+      "pseudonym": "Kati néni",
+      "segment": "Nyugdíjas, aktív közösségi tag (Tacskó tulajdonos)"
+    },
+    "consent": true,
+    "insights": [
+      "Szeretne a környékbeli kutyásokkal kapcsolatot tartani, de fél a bonyolult közösségi médiától.",
+      "Fontos számára, hogy le tudja menteni a jó állatorvosok elérhetőségét és a kapott tanácsokat."
+    ],
+    "pain_points": [
+      "Túl kicsik a betűk és túl sok a felesleges funkció a nagy közösségi oldalakon.",
+      "Gyakran elfelejti, melyik poszt alatt volt az a hasznos link a speciális tápról."
+    ],
+    "quotes": [
+      "\"Csak azt akarom látni, hogy a szomszéd Marika mikor viszi le a kutyust, és hogy elolvashassam, mit javasolt az orvos a multkor.\""
+    ]
+  }

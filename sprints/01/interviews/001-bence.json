@@ -1,0 +1,21 @@
+{
+    "id": "INT-001",
+    "date": "2025-10-12",
+    "method": "personal",
+    "participant": {
+      "pseudonym": "Bence",
+      "segment": "Dolgozó fiatal, első kutyás (Border Collie gazdi)"
+    },
+    "consent": true,
+    "insights": [
+      "Rengeteg Facebook csoportban tag, de a fontos infók (oltási időpontok, jó kutyafuttatók) elvesznek a zajban.",
+      "Szeretné strukturáltan látni a kutya fejlődését és a korábbi betegségeit egy helyen."
+    ],
+    "pain_points": [
+      "A Messenger csoportokban nehéz eseményt szervezni a közös sétákhoz, mert mindenki elbeszél mellette.",
+      "Nincs egy felület, ahol a kutyás barátai profilját és a kutyák adatait (pl. allergia) egyszerre látná."
+    ],
+    "quotes": [
+      "\"Jó lenne, ha nem kellene 15 percet görgetnem a csoportban, hogy megtudjam, mikor és hol találkozunk a többiekkel a parkban.\""
+    ]
+  }

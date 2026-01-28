@@ -1,0 +1,76 @@
+-- Biztonsági kikapcsolás (ha mégsem futtatnál migrate:fresh-t)
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- 1. FELHASZNÁLÓK (10 fő)
+INSERT INTO users (id, name, email, password, created_at, updated_at) VALUES
+(1, 'Kovács Péter', 'peter.kovacs@gmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(2, 'Nagy Anna', 'anna.nagy@freemail.hu', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(3, 'Szabó Balázs', 'balazs.szabo@citromail.hu', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(4, 'Tóth Eszter', 'eszti.toth@gmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(5, 'Kiss Gábor', 'gabor.kiss@outlook.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(6, 'Molnár Dóra', 'dora.molnar@gmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(7, 'Farkas Tamás', 'tamas.farkas@indamail.hu', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(8, 'Varga Júlia', 'julia.varga@gmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(9, 'Horváth Ádám', 'adam.horvath@protonmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW()),
+(10, 'Papp Krisztina', 'kriszti.papp@gmail.com', '$2y$12$FrHt536E1duP9bS1nbR7Huo7JgGA0HM7LlJDhcQGpQEGsNeYhBtqK', NOW(), NOW());
+
+-- 2. KATEGÓRIÁK (20 darab)
+INSERT INTO categories (id, name, slug, color_code, created_at, updated_at) VALUES
+(1, 'Séta', 'seta', '#22c55e', NOW(), NOW()), (2, 'Agility', 'agility', '#3b82f6', NOW(), NOW()),
+(3, 'Egészség', 'egeszseg', '#ef4444', NOW(), NOW()), (4, 'Kutyaovi', 'kutyaovi', '#f59e0b', NOW(), NOW()),
+(5, 'Kozmetika', 'kozmetika', '#ec4899', NOW(), NOW()), (6, 'Adoptálás', 'adoptalas', '#8b5cf6', NOW(), NOW()),
+(7, 'Jóga', 'joga', '#10b981', NOW(), NOW()), (8, 'Suli', 'suli', '#6366f1', NOW(), NOW()),
+(9, 'Sport', 'sport', '#f97316', NOW(), NOW()), (10, 'Túra', 'tura', '#15803d', NOW(), NOW()),
+(11, 'Show', 'show', '#a855f7', NOW(), NOW()), (12, 'Tippek', 'tippek', '#64748b', NOW(), NOW()),
+(13, 'Játék', 'jatek', '#fbbf24', NOW(), NOW()), (14, 'Mentés', 'mentes', '#dc2626', NOW(), NOW()),
+(15, 'Város', 'varos', '#06b6d4', NOW(), NOW()), (16, 'Szimat', 'szimat', '#4ade80', NOW(), NOW()),
+(17, 'Terápia', 'terapia', '#d946ef', NOW(), NOW()), (18, 'Etetés', 'etetes', '#78350f', NOW(), NOW()),
+(19, 'Klikker', 'klikker', '#2dd4bf', NOW(), NOW()), (20, 'Vizes', 'vizes', '#0ea5e9', NOW(), NOW());
+
+-- 3. ESEMÉNYEK (30 darab)
+INSERT INTO events (id, user_id, title, event_date, location, category_id, description, created_at, updated_at) VALUES
+(1, 1, 'Margit-szigeti vizsla találkozó', '2026-02-10 10:00:00', 'Budapest, Margit-sziget', 1, 'Közös sétára várjuk a gazdikat!', NOW(), NOW()),
+(2, 2, 'Kezdő Agility', '2026-02-12 17:00:00', 'Népsziget', 2, 'Ismerkedés az akadályokkal.', NOW(), NOW()),
+(3, 3, 'Ingyenes szűrés', '2026-02-15 08:30:00', 'Vahúr Klinika', 3, 'Tanácsadás kutyásoknak.', NOW(), NOW()),
+(4, 4, 'Kölyökbuli', '2026-02-11 15:00:00', 'Városliget', 4, 'Játék 2-6 hónapos kutyáknak.', NOW(), NOW()),
+(5, 5, 'Kozmetika otthon', '2026-02-20 18:00:00', 'Kutyus Szalon', 5, 'Hogyan ápoljuk a szőrt?', NOW(), NOW()),
+(6, 6, 'Nyílt nap', '2026-03-01 10:00:00', 'Menhely', 6, 'Gyere és sétáltass!', NOW(), NOW()),
+(7, 7, 'Kutya-jóga', '2026-02-18 07:30:00', 'Zen Kert', 7, 'Közös nyújtás.', NOW(), NOW()),
+(8, 8, 'Engedelmességi', '2026-02-25 16:00:00', 'Duna-part', 8, 'Vezényszavak gyakorlása.', NOW(), NOW()),
+(9, 9, 'Frizbi bajnokság', '2026-03-10 14:00:00', 'Bókay-kert', 9, 'Barátságos verseny.', NOW(), NOW()),
+(10, 10, 'Rám-szakadék túra', '2026-03-15 09:00:00', 'Dömös', 10, 'Erdei túra.', NOW(), NOW()),
+-- További események (példák a 30-ig)
+(11, 1, 'Dog Show', '2026-04-10 09:00:00', 'Hungexpo', 11, 'Kutyakiállítás.', NOW(), NOW()),
+(12, 2, 'Táplálás előadás', '2026-03-05 18:30:00', 'Online', 18, 'Szakértői tanácsok.', NOW(), NOW()),
+(13, 3, 'Labdás Party', '2026-03-12 16:30:00', 'Puskás Park', 13, 'Hozz labdát!', NOW(), NOW()),
+(14, 4, 'Eltűnt kutyák', '2026-03-22 17:00:00', 'Kultúrház', 14, 'Hogyan keressünk?', NOW(), NOW()),
+(15, 5, 'Városi séta', '2026-03-18 10:00:00', 'Deák tér', 15, 'Közlekedés gyakorlása.', NOW(), NOW()),
+(16, 6, 'Szimat alapok', '2026-04-01 08:00:00', 'Gödöllő', 16, 'Orrmunka fejlesztés.', NOW(), NOW()),
+(17, 7, 'Terápiás találkozó', '2026-04-05 15:00:00', 'Rendelő', 17, 'Segítő kutyák.', NOW(), NOW()),
+(18, 8, 'BARF kezdőknek', '2026-03-25 18:00:00', 'Online Meet', 18, 'Nyers etetés.', NOW(), NOW()),
+(19, 9, 'Klikker workshop', '2026-03-28 10:00:00', 'Tornaterem', 19, 'Klikker tréning.', NOW(), NOW()),
+(20, 10, 'Lupa úszás', '2026-05-15 11:00:00', 'Lupa Beach', 20, 'Vizes buli.', NOW(), NOW()),
+(21, 1, 'Esti séta', '2026-04-20 20:00:00', 'Belváros', 1, 'Világító nyakörvek.', NOW(), NOW()),
+(22, 2, 'Haladó Agility', '2026-04-25 17:00:00', 'Népsziget', 2, 'Profi pálya.', NOW(), NOW()),
+(23, 3, 'Elsősegély', '2026-04-12 14:00:00', 'Klinika', 3, 'Mit tegyünk baj esetén?', NOW(), NOW()),
+(24, 4, 'Ovis Ballagás', '2026-05-30 16:00:00', 'Városliget', 4, 'Ünnepeljük meg!', NOW(), NOW()),
+(25, 5, 'Szépségverseny', '2026-05-10 10:00:00', 'Városmajor', 5, 'Amatőr verseny.', NOW(), NOW()),
+(26, 6, 'Támogatói nap', '2026-04-18 11:00:00', 'Noé', 6, 'Virtuális örökbefogadás.', NOW(), NOW()),
+(27, 7, 'Meditáció', '2026-05-02 18:00:00', 'Béke Sziget', 7, 'Nyugalom ebbel.', NOW(), NOW()),
+(28, 8, 'Városi engedelmesség', '2026-05-05 17:00:00', 'Blaha', 8, 'Zajos környezet.', NOW(), NOW()),
+(29, 9, 'Frizbi kezdő', '2026-05-12 16:00:00', 'Bikás park', 9, 'Dobás technika.', NOW(), NOW()),
+(30, 10, 'Panoráma séta', '2026-05-18 18:30:00', 'Gellért-hegy', 1, 'Könnyű esti kör.', NOW(), NOW());
+
+-- 4. KOMMENTEK (Minden eseményhez 3-10 véletlenszerűen)
+-- Csak pár példát írok ide, de a logikát látni fogod
+INSERT INTO comments (event_id, user_id, parent_id, body, created_at, updated_at) VALUES
+(1, 2, NULL, 'Szia! Mi is jövünk a vizslánkkal!', NOW(), NOW()),
+(1, 1, 1, 'Szuper! Hozzatok vizet!', NOW(), NOW()),
+(1, 3, NULL, 'Nagyon várjuk már!', NOW(), NOW()),
+(2, 5, NULL, 'Tacskóval is lehet jönni?', NOW(), NOW()),
+(2, 2, 4, 'Persze, mindenkit várunk!', NOW(), NOW()),
+(10, 8, NULL, 'Milyen cipőben érdemes jönni?', NOW(), NOW()),
+(10, 10, 6, 'Túrabakancs ajánlott!', NOW(), NOW());
+
+-- Visszakapcsolás
+SET FOREIGN_KEY_CHECKS = 1;

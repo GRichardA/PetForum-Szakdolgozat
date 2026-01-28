@@ -1,0 +1,21 @@
+{
+    "id": "INT-004",
+    "date": "2025-11-18",
+    "method": "online",
+    "participant": {
+      "pseudonym": "Márk",
+      "segment": "Egyetemista, önkéntes menhelyi segítő"
+    },
+    "consent": true,
+    "insights": [
+      "Eseményeket akar szervezni adománygyűjtéshez és közös futtatáshoz.",
+      "A képek és videók feltöltése kulcsfontosságú az örökbefogadás népszerűsítéséhez."
+    ],
+    "pain_points": [
+      "Nincs dedikált naptár nézet az eseményekhez, csak ömlesztett hírfolyam.",
+      "A linkek gyakran elvesznek a hosszú leírásokban."
+    ],
+    "quotes": [
+      "\"Olyan oldal kellene, ahol egy esemény nem csak egy bejegyzés, hanem egy adatlap, ahol ott van a térkép, az időpont és a résztvevők listája is.\""
+    ]
+  }
