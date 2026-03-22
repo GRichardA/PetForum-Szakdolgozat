@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
           $table->id();
-            $table->string('title');        // <-- Ennek lennie kell benne
-            $table->dateTime('event_date'); // <-- Ennek lennie kell benne
-            $table->string('location');     // <-- Ennek lennie kell benne
-            $table->text('description')->nullable(); // <-- Ennek lennie kell benne
+            $table->string('title');        
+            $table->dateTime('event_date'); 
+            $table->string('location');     
+            $table->text('description')->nullable(); 
             $table->timestamps();
         });
 
