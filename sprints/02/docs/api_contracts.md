@@ -1,27 +1,36 @@
-API contracts (rövid)
+# API Contracts
 
-GET /events
-- Leírás: események listázása (query: category, search)
-- Válasz: JSON tömb esemény objektumokkal (id,title,description,event_date,location,category,user)
+## Formal spec
+- OpenAPI source: `docs/03_design/openapi.yaml`
+- Version: OpenAPI 3.0.3
 
-GET /events/{id}
-- Leírás: egy esemény részletei (kommentekkel)
-- Válasz: esemény objektum + comments tömb
+## Implemented JSON endpoints (v1)
 
-POST /events
-- Leírás: új esemény létrehozása (auth)
-- Body (application/x-www-form-urlencoded vagy JSON): title, event_date, location, description, category_id
-- Válasz: 201 Created + létrehozott esemény objektum vagy 422 validációs hiba
+### GET /api/v1/health
+- Leírás: rendszer állapot rövid ellenőrzése
+- Sikeres válasz: `200 OK`
+- Response fields: `status`, `database`, `storage`
 
-POST /events/{event}/comments
-- Leírás: hozzászólás létrehozása az eseményhez (auth)
-- Body: body, parent_id (opcionális)
-- Válasz: 302 redirect a web UI-n (vagy 201 JSON API esetén)
+### GET /api/v1/events
+- Leírás: események listázása JSON formátumban
+- Sikeres válasz: `200 OK`
+- Response contract:
+	- `data[]`: esemény objektum (`id`, `title`, `event_date`, `location`, `description`, `category`, `user`)
+	- `meta.count`: lista elemszáma
 
-POST /profile (PUT /profile)
-- Profil frissítés: name,email,password(optional),avatar (file) vagy avatar_choice
+### GET /api/v1/events/{eventId}
+- Leírás: egy esemény részletei komment fával
+- Sikeres válasz: `200 OK`
+- Hiba: `404 Not Found` ha az esemény nem létezik
+- Response contract:
+	- `data`: esemény objektum
+	- `data.comments[]`: gyökér kommentek
+	- `data.comments[].children[]`: gyermek kommentek
 
-GET /user-avatars/{filename}
-- Fájl kiszolgálás a feltöltött avatarokhoz (képek)
+## Contract test coverage
+- `tests/Feature/ApiContractTest.php` ellenőrzi:
+	- events index JSON szerkezetet
+	- event show JSON szerkezetet kommentekkel
 
-Megjegyzés: ez a projekt alapvetően blade/web app; ha később API-first megközelítést szeretnél, érdemes explicit JSON API végpontokat létrehozni és dokumentálni a response formátumokat (például OpenAPI/Swagger használatával).
+## Web routes (nem JSON API)
+- A Blade UI endpointok (`/events`, `/profile`, `/events/{event}/comments`) továbbra is web workflow-t szolgálnak (redirect/session).

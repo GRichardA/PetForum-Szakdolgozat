@@ -1,0 +1,15 @@
+flowchart TB
+    browser["Web browser\nBlade UI"]
+    app["Laravel alkalmazas\nControllers/Requests/Models"]
+    jobs["Queue worker\n(opcionalis)\nAszinkron feladatok"]
+    db[("MySQL\nUsers, Events, Categories, Comments")]
+    storage["Storage\nAvatar fajlok"]
+    logs["JSON log channel\nMonolog"]
+
+    browser -->|HTTP/HTTPS| app
+    app -->|SQL| db
+    app -->|Store/Read files| storage
+    app -->|App logs| logs
+    app -.->|Dispatch jobs| jobs
+    jobs -->|SQL| db
+    jobs -->|Write logs| logs
