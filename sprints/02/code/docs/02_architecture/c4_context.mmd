@@ -1,0 +1,13 @@
+flowchart TB
+    user["Felhasznalo\n(Bongeszo)"]
+    admin["Admin\n(Bongeszo)"]
+    petforum["PetForum rendszer\nLaravel webalkalmazas"]
+    db[("MySQL adatbazis")]
+    fs["Fajlrendszer\nAvatar tarolas"]
+    mail["SMTP szolgaltatas\n(opcionalis)"]
+
+    user -->|HTTP/HTTPS| petforum
+    admin -->|HTTP/HTTPS| petforum
+    petforum -->|SQL| db
+    petforum -->|Read/Write| fs
+    petforum -.->|Email kuldes| mail

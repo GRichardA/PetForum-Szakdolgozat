@@ -1,15 +1,15 @@
-# ADR 0007 — API Versioning Approach
+# ADR 0007 — API verziózási megközelítés
 
-- Status: Accepted
-- Date: 2026-04-18
+- Állapot: Elfogadva
+- Dátum: 2026-04-18
 
-## Context
-A projekt jelenleg web-first, de kesobb formalizalt API endpointok is szuksegesek lehetnek.
+## Kontextus
+A projekt jelenleg web-központú, de később szükségem lehet formalizált API végpontokra is.
 
-## Decision
-A mostani iteracioban nem vezetunk be kulon API verziot, de a jovobeli API route-ok `api/v1` prefix alatt indulnak.
+## Döntés
+A jelenlegi iterációban nem vezetek be külön API verziót, de a jövőbeli API útvonalakat az `api/v1` előtag alatt indítom el.
 
-## Consequences
-- Elony: egyszeru jelenlegi kodbazis, tiszta migracios ut.
-- Hatrany: jelenleg nincs teljes OpenAPI-lefedett API reteg.
-- Mitigalasa: kovetkezo merfoldkoben OpenAPI spec + contract tesztek bevezetese.
+## Következmények
+- Előny: egyszerű jelenlegi kódalap, tiszta migrációs út.
+- Hátrány: jelenleg nincs teljes OpenAPI-lefedettségű API réteg.
+- Mitigálása: a következő mérföldkőben OpenAPI specifikáció és szerződésalapú (contract) tesztek bevezetése várható.

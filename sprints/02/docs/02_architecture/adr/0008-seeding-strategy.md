@@ -1,17 +1,17 @@
-# ADR 0008 — Seeding Strategy for Demo and Testing
+# ADR 0008 — Seeding stratégia demóhoz és teszteléshez
 
-- Status: Accepted
-- Date: 2026-04-18
+- Állapot: Elfogadva
+- Dátum: 2026-04-18
 
-## Context
-A demonstraciohoz realisztikus, a tesztekhez reprodukalhato adatok kellenek.
+## Kontextus
+A bemutatóhoz valósághű, a tesztekhez pedig reprodukálható adatokra van szükségem.
 
-## Decision
-Dualis seeding strategiat alkalmazunk:
-- demo seederek realisztikus esemeny/kategoria nevekkel,
-- tesztfuttatasban gyari/factory adatok izolaltan, RefreshDatabase mellett.
+## Döntés
+Kettős adatfeltöltési (seeding) stratégiát alkalmazok:
+- Demó seeder-ek valósághű esemény- és kategórianevekkel.
+- Tesztfuttatások során gyári (factory) adatok izoláltan, a `RefreshDatabase` trait használata mellett.
 
-## Consequences
-- Elony: demo minoseg javul, tesztek stabilabbak.
-- Hatrany: ket adatelokeszitesi utvonal karbantartasi koltsege.
-- Mitigalasa: dokumentalt seeding flow es egységes naming konvencio.
+## Következmények
+- Előny: javul a demó minősége, a tesztek stabilabbak.
+- Hátrány: két különböző adat-előkészítési útvonal karbantartási költsége.
+- Mitigálása: dokumentált adatfeltöltési folyamat és egységes elnevezési konvenciók használata.

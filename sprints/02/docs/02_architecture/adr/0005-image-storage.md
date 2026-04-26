@@ -1,15 +1,15 @@
-# ADR 0005 — Avatar Image Storage
+# ADR 0005 — Profilkép tárolás
 
-- Status: Accepted
-- Date: 2026-04-18
+- Állapot: Elfogadva
+- Dátum: 2026-04-18
 
-## Context
-A felhasznalok avatarokat toltenek fel. Szukseg van meretezesre es biztonsagos kiszolgalasra.
+## Kontextus
+A felhasználók avatarokat töltenek fel a rendszerbe. Szükségem van ezek méretezésére és biztonságos kiszolgálására.
 
-## Decision
-Az avatarokat a Laravel storage rendszerben taroljuk, szerveroldali meretezessel (Intervention + GD fallback), es route-on keresztul szolgaljuk ki.
+## Döntés
+Az avatarokat a Laravel tárolórendszerében (storage) tárolom, szerveroldali méretezéssel (Intervention + GD fallback), és egyedi útvonalon keresztül szolgálom ki őket.
 
-## Consequences
-- Elony: kontrollalt file-hozzaferes, path traversal kockazat csokkentese.
-- Hatrany: plusz alkalmazas logika es storage jogok kezelese.
-- Mitigalasa: upload validacio, file size limit, health/storage ellenorzes.
+## Következmények
+- Előny: kontrollált fájlhozzáférés, az útvonal-bejárásos (path traversal) kockázatok csökkentése.
+- Hátrány: többlet alkalmazáslogikát és tárolási jogosultság-kezelést igényel.
+- Mitigálása: feltöltési validáció, fájlméret-korlát, valamint tárolóegység (storage) állapotellenőrzés alkalmazása.

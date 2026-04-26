@@ -1,20 +1,20 @@
-# ADR 0001 — Deployment Platform Selection
+# ADR 0001 — Telepítési platform kiválasztása
 
-- Status: Accepted
-- Date: 2025-11-20
+- Állapot: Elfogadva
+- Dátum: 2025-11-20
 
-## Context
-The PetForum MVP (Laravel + MySQL) needs a reproducible deployment target with low cost and IaC support.
+## Kontextus
+A PetForum MVP (Laravel + MySQL) számára egy alacsony költségű, reprodukálható, IaC támogatással rendelkező telepítési környezetet kell biztosítanom.
 
-## Decision
-Use AWS Free Tier as the primary target platform (EC2 t2.micro class equivalent for demo environments).
+## Döntés
+Az AWS Free Tier-t választottam elsődleges célplatformnak (EC2 t2.micro osztálynak megfelelő gépet a demó környezetekhez).
 
-## Alternatives
-- Railway/Heroku-like PaaS: easier setup, but free-tier limits and less IaC control.
-- Shared hosting: low cost, but weak IaC and CI/CD integration.
-- Localhost only: suitable for development but not a deployment strategy.
+## Alternatívák
+- Railway/Heroku-szerű PaaS szolgáltatók: egyszerűbb beállítás, de az ingyenes korlátok szigorúbbak és kevesebb az IaC feletti kontroll.
+- Osztott tárhely (Shared hosting): alacsony költség, de gyenge az IaC és a CI/CD integráció.
+- Csak localhost: fejlesztésre alkalmas, de nem valódi telepítési stratégia.
 
-## Consequences
-- Pros: good Terraform compatibility, reproducible infra planning.
-- Cons: more setup complexity than simple PaaS.
-- Risk: accidental cost overrun if free limits are exceeded.
+## Következmények
+- Előnyök: jó Terraform kompatibilitás, reprodukálható infrastruktúra-tervezés.
+- Hátrányok: bonyolultabb beállítás egy egyszerű PaaS megoldáshoz képest.
+- Kockázat: véletlen túllépés az ingyenes kereten, ami költségekkel járhat.

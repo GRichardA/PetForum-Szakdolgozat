@@ -1,17 +1,17 @@
-# ADR 0004 — Cache Strategy
+# ADR 0004 — Gyorsítótárazási stratégia
 
-- Status: Accepted
-- Date: 2026-04-18
+- Állapot: Elfogadva
+- Dátum: 2026-04-18
 
-## Context
-Az esemenylista es kategoriak gyakran olvasott adatok. A cel az egyszeru teljesitmenyjavitas bonyolult cache invalidacio nelkul.
+## Kontextus
+Az eseménylista és a kategóriák gyakran lekért adatok. A célom egy egyszerű teljesítményjavítás elérése bonyolult gyorsítótár-érvénytelenítés (cache invalidation) nélkül.
 
-## Decision
-Kezdetben minimalis cache-strategiat alkalmazunk:
-- konfiguracio/route/view cache deploykor,
-- alkalmazas szintu adatkache csak ott, ahol alacsony a valtozasi frekvencia (pl. kategoriak).
+## Döntés
+Kezdetben minimális gyorsítótárazási stratégiát alkalmazok:
+- Konfiguráció, útvonal (route) és nézet (view) cache-elés telepítéskor.
+- Alkalmazásszintű adatgyorsítótár csak ott, ahol alacsony a változási gyakoriság (pl. kategóriák).
 
-## Consequences
-- Elony: egyszeru uzemeltetes, alacsony hibakockazat.
-- Hatrany: nagy terhelesnel tovabbi optimalizacio kellhet.
-- Mitigalasa: kesobb targeted query cache bevezetese kulcsalapu invalidacioval.
+## Következmények
+- Előny: egyszerű üzemeltetés, alacsony hibakockázat.
+- Hátrány: nagy terhelésnél további optimalizációra lehet szükség.
+- Mitigálása: később célzott lekérdezés-gyorsítótárazás (query cache) vezethető be kulcsalapú érvénytelenítéssel.

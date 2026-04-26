@@ -1,19 +1,19 @@
-# ADR 0002 — Infrastructure as Code Strategy
+# ADR 0002 — Infrastruktúra kódként (IaC) stratégia
 
-- Status: Accepted
-- Date: 2025-11-20
+- Állapot: Elfogadva
+- Dátum: 2025-11-20
 
-## Context
-Manual infrastructure setup is not reproducible and increases configuration drift risk.
+## Kontextus
+A manuális infrastruktúra-beállítás nem reprodukálható, és növeli a konfigurációs eltérések (drift) kockázatát.
 
-## Decision
-Use Terraform for infrastructure definition and validation (`validate`, `plan`) as the default engineering workflow.
+## Döntés
+Terraformot használok az infrastruktúra definiálására és validálására (`validate`, `plan`) alapértelmezett mérnöki munkafolyamatként.
 
-## Alternatives
-- Manual ClickOps setup in cloud console.
-- Ad-hoc shell scripts without state tracking.
+## Alternatívák
+- Manuális beállítás a felhőszolgáltató konzolján keresztül.
+- Eseti (ad-hoc) shell scriptek állapotkövetés nélkül.
 
-## Consequences
-- Pros: traceable, reviewable, reproducible infra changes.
-- Cons: additional IaC learning and maintenance effort.
-- Risk mitigation: keep templates minimal during thesis scope and validate in CI.
+## Következmények
+- Előnyök: nyomon követhető, ellenőrizhető és reprodukálható infrastruktúra-változtatások.
+- Hátrányok: plusz tanulási görbe és karbantartási igény az IaC miatt.
+- Kockázatcsökkentés: a sablonokat a szakdolgozat keretein belül minimális szinten tartom, és a CI folyamatban validálom őket.

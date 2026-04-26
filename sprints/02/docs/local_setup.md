@@ -29,8 +29,6 @@ DB_PASSWORD=
 4) Telepítés
 ```bash
 composer install
-npm install
-npm run build
 cp .env.example .env
 php artisan key:generate
 ```
@@ -53,6 +51,11 @@ php artisan storage:link
 ```bash
 php artisan serve
 # vagy XAMPP Apache elindítása és a projekt public mappájának elérése
+```
+
+8) Oldal megnyitása
+```bash
+Kattints a Server running on [http://127.0.0.1:8000]. link részére vagy http://127.0.0.1:8000/events beírása a böngészőbe.
 ```
 
 Gyakori problémák

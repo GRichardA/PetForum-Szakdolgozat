@@ -1,15 +1,15 @@
-# ADR 0003 — Authentication Strategy
+# ADR 0003 — Hitelesítési stratégia
 
-- Status: Accepted
-- Date: 2026-04-18
+- Állapot: Elfogadva
+- Dátum: 2026-04-18
 
-## Context
-A projekt jelenleg Blade-alapu webalkalmazas, ahol a legfontosabb flow a bejelentkezes utan vedett CRUD muveletek kezelese.
+## Kontextus
+A projektem jelenleg egy Blade-alapú webalkalmazás, ahol a legfontosabb folyamat a bejelentkezés utáni védett CRUD műveletek kezelése.
 
-## Decision
-Laravel session-based authentikaciot hasznalunk (beepitett auth middleware), nem JWT/OAuth alapu API authot.
+## Döntés
+Laravel session-alapú hitelesítést használok (beépített auth middleware), nem pedig JWT/OAuth alapú API hitelesítést.
 
-## Consequences
-- Elony: egyszerubb implementacio, gyorsabb thesis-reprodukcio, kevesebb infrastrukturafugges.
-- Hatrany: kulso kliens API auth skala korlatozottabb.
-- Mitigalasa: kesobb kulon API auth reteg bevezetese lehetseges.
+## Következmények
+- Előny: egyszerűbb implementáció, gyorsabb szakdolgozati reprodukció, kevesebb infrastruktúra-függőség.
+- Hátrány: a külső kliensek API hitelesítési skálázhatósága korlátozottabb.
+- Mitigálása: később külön API hitelesítési réteg bevezetése lehetséges.
