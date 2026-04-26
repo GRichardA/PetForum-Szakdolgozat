@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PetForum - Pageflow Diagram</title>
+    <script src="https://cdn.jsdelivr.net/npm/mermaid/dist/mermaid.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background-color: #1a1a1a;
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .mermaid {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="mermaid">
+flowchart TD
+    EP["▶ Entry: / (redirect to events)"] --> S02["S02 Dashboard / Event List"]
+    S02 -->|Login click| S01["S01 Login / Register 🔒"]
+    S01 -->|Successful auth| S02
+
+    S02 -->|Create event| S03["S03 Event Create / Edit 🔒"]
+    S03 -->|Save success| S06["S06 My Events 🔒"]
+    S06 -->|Edit event| S03
+    S06 -->|Open event| S04["S04 Event Details + Comments"]
+
+    S02 -->|Open event card| S04
+    S04 -->|Post comment| S04
+    S04 -->|Reply to comment| S04
+
+    S02 -->|Open profile menu| S05["S05 Profile + Avatar 🔒"]
+    S05 -->|Save profile| S02
+
+    S03 -->|Validation error| D1{"♦ Validation dialog/messages"}
+    D1 --> S03
+    </div>
+    <script>
+        mermaid.initialize({ startOnLoad: true, theme: 'dark' });
+        mermaid.contentLoaded();
+    </script>
+</body>
+</html>

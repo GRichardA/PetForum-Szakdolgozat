@@ -1,0 +1,19 @@
+flowchart TD
+    EP["▶ Entry: / (redirect to events)"] --> S02["S02 Dashboard / Event List"]
+    S02 -->|Login click| S01["S01 Login / Register 🔒"]
+    S01 -->|Successful auth| S02
+
+    S02 -->|Create event| S03["S03 Event Create / Edit 🔒"]
+    S03 -->|Save success| S06["S06 My Events 🔒"]
+    S06 -->|Edit event| S03
+    S06 -->|Open event| S04["S04 Event Details + Comments"]
+
+    S02 -->|Open event card| S04
+    S04 -->|Post comment| S04
+    S04 -->|Reply to comment| S04
+
+    S02 -->|Open profile menu| S05["S05 Profile + Avatar 🔒"]
+    S05 -->|Save profile| S02
+
+    S03 -->|Validation error| D1{"♦ Validation dialog/messages"}
+    D1 --> S03
