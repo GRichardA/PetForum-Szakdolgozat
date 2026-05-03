@@ -1,28 +1,28 @@
-# Error Handling
+# Hibakezelés
 
-Date: 2026-04-25
-Scope: practical error handling behavior for API and web flows.
+Dátum: 2026-04-25
+Hatáskör: gyakorlati hibakezelés viselkedés API és web folyamatokhoz.
 
-## Goals
+## Célok
 
-1. Prevent technical stack traces in normal user-facing paths.
-2. Keep contracts predictable for API consumers.
-3. Ensure validation and authorization failures are explicit and testable.
+1. Megelzőzés a műszaki verem nyomok megjelenésének normál felhasználó ellenezéseknél.
+2. Szerződések kiszamítható maradása az API fogyasztoinak.
+3. Validáció és autorizació hibák explicit és tesztelhető maradása.
 
-## Error categories
+## Hibakategoriák
 
-### 1) Validation errors
+### 1) Validációs hibák
 
-Web flow behavior:
-- Invalid form input redirects back with session errors.
-- User input is preserved with old() values in Blade forms.
+Web folyamat viselkedés:
+- Érvénytelen form bemenét visszairányít session hibakkal.
+- Felhasználói bementő az old() értékekkel Blade formokban még van tartva.
 
-Examples:
-- Invalid category on event creation.
-- Empty comment body.
-- Profile email uniqueness conflict.
+Példák:
+- Érvénytelen kategória esemény létrehozásnál.
+- Üres hozzászólás állómány.
+- Profil email egyediség ütközés.
 
-Evidence:
+Bizonyíték:
 - [tests/Feature/EventTest.php](tests/Feature/EventTest.php)
 - [tests/Feature/CommentTest.php](tests/Feature/CommentTest.php)
 - [tests/Feature/ProfileTest.php](tests/Feature/ProfileTest.php)
@@ -32,27 +32,31 @@ Evidence:
 Behavior:
 - Guest access to protected routes redirects to login.
 - Non-owner event update/delete attempts are blocked.
+- Non-owner or non-admin comment delete attempts return 403.
+- Admin can delete any comment or event.
 
 Evidence:
 - [tests/Feature/AuthTest.php](tests/Feature/AuthTest.php)
 - [tests/Feature/EventTest.php](tests/Feature/EventTest.php)
+- [tests/Feature/CommentTest.php](tests/Feature/CommentTest.php) - includes comment owner/admin authorization tests
 - [tests/Feature/ProfileTest.php](tests/Feature/ProfileTest.php)
+- [tests/Feature/AdminTest.php](tests/Feature/AdminTest.php)
 
-### 3) Not found errors
+### 3) Nem található hibák
 
-Behavior:
-- /api/v1/events/{eventId} returns 404 when event does not exist.
+Viselkedés:
+- /api/v1/events/{eventId} 404-et ad vissza, ha az esemény nem létezik.
 
-Evidence:
+Bizonyíték:
 - [tests/Feature/ApiContractTest.php](tests/Feature/ApiContractTest.php)
 
-### 4) Infrastructure-related errors (DB/storage)
+### 4) Infrastruktúra-kapcsolat hibák (DB/storage)
 
-Behavior baseline:
-- Health endpoint exposes status summary for database and storage.
-- Incident runbook defines operator actions for DB and storage failures.
+Viselkedés alaptörvény:
+- Az egészség végpont állapot összefoglalást tesz közössé adatbázis és storage részére.
+- Tájékoztató könyv meghatározza az operátor cselekvéseit DB és storage hibákhoz.
 
-Evidence:
+Bizonyíték:
 - [app/Http/Controllers/HealthController.php](app/Http/Controllers/HealthController.php)
 - [docs/05_security_ops/deploy_runbook.md](docs/05_security_ops/deploy_runbook.md)
 
@@ -67,13 +71,13 @@ Recommended next step:
 2. Standardize JSON error schema for 401/403/404/422/500.
 3. Add contract tests for each error category.
 
-## Production safety baseline
+## Prodúckció biztonsági alaptörvény
 
-- Keep APP_DEBUG=false outside local development.
-- Avoid logging sensitive data (passwords, tokens, raw secrets).
-- Verify health endpoint and logs post-deploy.
+- Keep APP_DEBUG=false a helyi fejlésztésen kívül.
+- Kerüljék az érzékeny adatok naplózását (jelszavak, jetonok, nyers titkok).
+- Ellenőrizze az egészség végpontot és naplókat post-deploy.
 
-Related docs:
+Függeléki dokumentumok:
 - [docs/03_design/api.md](docs/03_design/api.md)
 - [docs/05_security_ops/privacy_licensing.md](docs/05_security_ops/privacy_licensing.md)
 - [docs/05_security_ops/observability.md](docs/05_security_ops/observability.md)

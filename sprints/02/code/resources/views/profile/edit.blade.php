@@ -3,7 +3,16 @@
 @section('title', 'Profil szerkesztése')
 
 @section('content')
-    <div class="max-w-2xl mx-auto bg-white p-8 rounded-lg shadow">
+    <div class="max-w-2xl mx-auto">
+        @if(Auth::user()->is_admin)
+            <div class="mb-6 p-4 bg-indigo-50 border-l-4 border-indigo-400 rounded">
+                <a href="{{ route('admin.dashboard') }}" class="text-indigo-600 hover:text-indigo-800 font-semibold">
+                    → Admin Panel
+                </a>
+            </div>
+        @endif
+
+        <div class="bg-white p-8 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-4">Profil szerkesztése</h1>
 
         @if ($errors->any())
@@ -67,12 +76,22 @@
 
             <div>
                 <label class="block text-sm font-medium text-gray-700">Új jelszó (opcionális)</label>
-                <input type="password" name="password" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                <div class="password-input-wrap">
+                    <input id="profile_password" type="password" name="password" class="mt-1 block w-full pr-10 border border-gray-300 rounded-md p-2" />
+                    <button type="button" class="password-toggle-btn" data-target="profile_password" aria-pressed="false" title="Jelszó mutatása">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C6 3 2.73 5.11 1 8c1.73 2.89 5 5 9 5s7.27-2.11 9-5c-1.73-2.89-5-5-9-5zM10 11a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                    </button>
+                </div>
             </div>
 
             <div>
                 <label class="block text-sm font-medium text-gray-700">Jelszó megerősítése</label>
-                <input type="password" name="password_confirmation" class="mt-1 block w-full border border-gray-300 rounded-md p-2" />
+                <div class="password-input-wrap">
+                    <input id="profile_password_confirmation" type="password" name="password_confirmation" class="mt-1 block w-full pr-10 border border-gray-300 rounded-md p-2" />
+                    <button type="button" class="password-toggle-btn" data-target="profile_password_confirmation" aria-pressed="false" title="Jelszó mutatása">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C6 3 2.73 5.11 1 8c1.73 2.89 5 5 9 5s7.27-2.11 9-5c-1.73-2.89-5-5-9-5zM10 11a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                    </button>
+                </div>
             </div>
 
             <div class="flex justify-end">

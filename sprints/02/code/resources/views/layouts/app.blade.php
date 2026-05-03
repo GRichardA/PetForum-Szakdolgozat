@@ -13,12 +13,38 @@
             @apply px-3 py-2 rounded-md text-sm font-medium transition duration-150 ease-in-out;
         }
         /* Dark mode overrides (basic) */
-        .dark body { background-color: #0f172a; color: #e5e7eb; }
-        .dark .bg-white { background-color: #0b1220 !important; }
-        .dark .text-gray-900, .dark .text-gray-800 { color: #e5e7eb !important; }
-        .dark .text-gray-500 { color: #94a3b8 !important; }
+        /* Default text on dark backgrounds should be white for contrast */
+        .dark body { background-color: #0f172a; color: #ffffff; }
+        .dark .text-gray-900, .dark .text-gray-800, .dark .text-gray-700, .dark .text-gray-600 { color: #ffffff !important; }
+        .dark .text-gray-500 { color: #c7c7c7 !important; }
         .dark .border-gray-100 { border-color: #1f2937 !important; }
         .dark .bg-gray-50 { background-color: #071024 !important; }
+
+        /* EXCEPTION: only form controls should keep a light background in dark mode
+           so their placeholder/value remains readable. Do NOT override generic
+           `.bg-white` components (navbars/cards/etc) — they should stay dark. */
+        .dark .bg-white { background-color: #0b1220 !important; color: #e5e7eb !important; }
+
+        /* Keep inputs/selects/textarea inside forms light with dark text */
+        .dark form input, .dark form textarea, .dark form select,
+        .dark form input[type="text"], .dark form input[type="email"], .dark form input[type="password"],
+        .dark form input[type="datetime-local"], .dark form .form-input, .dark form .form-control {
+            background-color: #ffffff !important;
+            color: #000000 !important;
+            caret-color: #000000 !important;
+            border-color: #d1d5db !important;
+        }
+
+        /* Force black text for admin card links in dark mode */
+        .dark a[href*="admin"] strong, .dark a[href*="admin"] small {
+            color: #000000 !important;
+        }
+        .dark a[href*="admin"] {
+            color: #000000 !important;
+        }
+        .dark a[href*="admin"] * {
+            color: inherit !important;
+        }
     </style>
 </head>
 <body class="bg-gray-50 text-gray-800 antialiased">
@@ -185,5 +211,49 @@
             });
         })();
     </script>
+
+    <script>
+        // Password show/hide toggle: finds buttons with data-target attribute
+        (function () {
+            function setupToggle(btn) {
+                var targetId = btn.getAttribute('data-target');
+                if (!targetId) return;
+                var input = document.getElementById(targetId);
+                if (!input) return;
+
+                btn.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        btn.setAttribute('aria-pressed', 'true');
+                    } else {
+                        input.type = 'password';
+                        btn.setAttribute('aria-pressed', 'false');
+                    }
+                });
+            }
+
+            document.addEventListener('DOMContentLoaded', function () {
+                var buttons = document.querySelectorAll('.password-toggle-btn');
+                buttons.forEach(setupToggle);
+            });
+        })();
+    </script>
+    <style>
+        /* Password visibility toggle button inside input wrappers */
+        .password-toggle-btn {
+            background: transparent;
+            border: none;
+            padding: 0.25rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            color: #6b7280; /* gray-500 */
+        }
+        .password-toggle-btn:hover { color: #374151; }
+        .password-input-wrap { position: relative; }
+        .password-toggle-btn { position: absolute; right: 0.5rem; top: 50%; transform: translateY(-50%); }
+    </style>
 </body>
 </html>

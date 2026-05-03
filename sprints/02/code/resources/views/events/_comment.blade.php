@@ -5,7 +5,20 @@
     <div class="flex-1">
         <div class="flex items-center justify-between">
             <div class="text-sm font-semibold text-gray-800">{{ $comment->user->name }}</div>
-            <div class="text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</div>
+            <div class="flex items-center space-x-4">
+                <div class="text-xs text-gray-500">{{ $comment->created_at->diffForHumans() }}</div>
+                
+                {{-- Delete button for comment owner or admin --}}
+                @auth
+                    @if($comment->canBeDeletedBy(Auth::user()))
+                        <form action="{{ route('events.comments.destroy', [$comment->event_id, $comment->id]) }}" method="POST" class="inline" onsubmit="return confirm('Biztosan törli ezt a hozzászólást?');">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="text-xs text-red-600 hover:text-red-800 hover:underline">Törlés</button>
+                        </form>
+                    @endif
+                @endauth
+            </div>
         </div>
         <div class="mt-2 text-gray-700">{!! nl2br(e($comment->body)) !!}</div>
 

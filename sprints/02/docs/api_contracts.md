@@ -34,3 +34,22 @@
 
 ## Web routes (nem JSON API)
 - A Blade UI endpointok (`/events`, `/profile`, `/events/{event}/comments`) továbbra is web workflow-t szolgálnak (redirect/session).
+
+## Comment management (web routes)
+
+### POST /events/{event}/comments
+- **Leírás**: Komment vagy válasz létrehozása egy eseményhez
+- **Auth**: Kötelező (auth middleware)
+- **Validáció**: `body` (max 1000 karakter), `parent_id` (optional, válaszokhoz)
+- **Sikeres válasz**: Redirect az esemény megjelenítéshez success üzenettel
+- **Implementáció**: [app/Http/Controllers/CommentController.php](app/Http/Controllers/CommentController.php)
+
+### DELETE /events/{event}/comments/{comment}
+- **Leírás**: Komment és az összes gyermek kommentjei törlése
+- **Auth**: Kötelező (auth middleware)
+- **Jogosultság**: Komment szerzője VAGY admin
+- **Sikeres válasz (200)**: Redirect az esemény megjelenítéshez success üzenettel
+- **Hiba (403)**: Jogosultsági hiba, ha a user sem a komment szerzője, sem admin
+- **Hiba (404)**: Komment vagy esemény nem található
+- **Kaszkád viselkedés**: Parent komment törlése rekurzívan törli az összes child kommentjeit
+- **Implementáció**: [app/Http/Controllers/CommentController.php](app/Http/Controllers/CommentController.php)

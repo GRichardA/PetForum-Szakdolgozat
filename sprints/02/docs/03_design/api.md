@@ -1,80 +1,82 @@
-# API Documentation
+# API Dokumentáció
 
-Date: 2026-04-25
-Scope: implemented JSON API surface for contract-based integration and thesis evidence.
+Dátum: 2026-04-25
+Hatáskör: megvalósított JSON API felület szerződésalapú integrációhoz és dolgozat bizonyítékához.
 
-## Base information
+## Alapinformációk
 
-- API base path: /api/v1
-- Main contract source: [docs/03_design/openapi.yaml](docs/03_design/openapi.yaml)
-- Contract test source: [tests/Feature/ApiContractTest.php](tests/Feature/ApiContractTest.php)
+- API alapútvonal: /api/v1
+- Fő szerződés forráskódja: [docs/03_design/openapi.yaml](docs/03_design/openapi.yaml)
+- Szerződés tesztkódja: [tests/Feature/ApiContractTest.php](tests/Feature/ApiContractTest.php)
 
 ## Endpoints
 
 ### GET /api/v1/health
 
-Purpose:
-- Minimal service health snapshot.
+Cél:
+- Minimális szolgáltatás-állapot pillanatkép.
 
-Response (200):
+Válasz (200):
 - status
 - database
 - storage
 
-Implementation:
+Megvalósítás:
 - [app/Http/Controllers/HealthController.php](app/Http/Controllers/HealthController.php)
 
-### GET /api/v1/events
+## GET /api/v1/events
 
-Purpose:
-- List events with category and author references.
+Cél:
+- Események listázása kategória és szerző hivatkozásokkal.
 
-Response (200):
+Válasz (200):
 - data[]
   - id, title, event_date, location, description
   - category: id, name, slug
   - user: id, name
 - meta.count
 
-Implementation:
+Megvalósítás:
 - [app/Http/Controllers/Api/EventApiController.php](app/Http/Controllers/Api/EventApiController.php)
 
 ### GET /api/v1/events/{eventId}
 
-Purpose:
-- Return detailed event representation with comments and one-level children.
+Cél:
+- Részletes esemény reprezentáció kommentekkel és egy szintű gyermekekkel.
 
-Response (200):
+Válasz (200):
 - data
-  - base event fields
+  - alapvető esemény mezői
   - comments[]
     - id, body, user
     - children[] (id, body, user)
 
-Response (404):
-- Event not found.
+Válasz (404):
+- Esemény nem található.
 
-Implementation:
+Megvalósítás:
 - [app/Http/Controllers/Api/EventApiController.php](app/Http/Controllers/Api/EventApiController.php)
 
-## Routing
+## Útvonalak
 
 - [routes/api.php](routes/api.php)
-- API route registration in bootstrap: [bootstrap/app.php](bootstrap/app.php)
+- API útvonal regisztrálás a bootstrap-ben: [bootstrap/app.php](bootstrap/app.php)
 
-## Validation and auth boundary notes
+## Validáció és auth határok megjegyzése
 
-- The above endpoints are read-only public contract endpoints.
-- Web mutation flows (event create/comment/profile update) are handled via web routes and form validation.
-- Negative and authorization behavior is covered in feature tests.
+- Az API olvasó végpontok (`/api/v1/*`) nyilvános szerződés végpontok.
+- Web mutációs folyamatok (esemény/komment/profil írás) web útvonalak és form validáció segítségével kezelve.
+- Komment törlés végrehajtja a tulajdonlás vagy admin szerepkör ellenőrzését; jogosulatlan kísérletek 403-at adnak vissza.
+- Negatív és autorizáció viselkedés feature tesztekben fedett.
 
-Related evidence:
+Függeléki bizonyítékok:
 - [tests/Feature/EventTest.php](tests/Feature/EventTest.php)
-- [tests/Feature/CommentTest.php](tests/Feature/CommentTest.php)
+- [tests/Feature/CommentTest.php](tests/Feature/CommentTest.php) - komment törlés tesztek beépítve
 - [tests/Feature/ProfileTest.php](tests/Feature/ProfileTest.php)
+- [tests/Feature/AdminTest.php](tests/Feature/AdminTest.php)
 
-## Error response baseline
+## Hiba válasz alaptörvény
 
-- 404 for missing event on /api/v1/events/{eventId}.
-- Validation and auth errors in web flows use Laravel redirect/session error mechanism.
-- Dedicated error-handling notes: [docs/03_design/error_handling.md](docs/03_design/error_handling.md)
+- 404 hiányzó eseményhez a /api/v1/events/{eventId}-n.
+- Validáció és auth hibák web folyamatokban Laravel átirányítás/session hiba mechanizmussal.
+- Dedikált hibakezelési megjegyzés: [docs/03_design/error_handling.md](docs/03_design/error_handling.md)

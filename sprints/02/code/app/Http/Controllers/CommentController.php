@@ -30,4 +30,21 @@ class CommentController extends Controller
 
         return redirect()->route('events.show', $event->id)->with('success', 'Hozzászólás elmentve.');
     }
+
+    public function destroy(Request $request, Event $event, Comment $comment)
+    {
+        // Check if comment belongs to this event
+        if ($comment->event_id !== $event->id) {
+            abort(404);
+        }
+
+        // Check authorization
+        if (!$comment->canBeDeletedBy(Auth::user())) {
+            abort(403, 'Nincs jogosultsága ezt a hozzászólást törölni.');
+        }
+
+        $comment->delete();
+
+        return redirect()->route('events.show', $event->id)->with('success', 'Hozzászólás törölve.');
+    }
 }

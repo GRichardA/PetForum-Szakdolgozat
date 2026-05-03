@@ -1,4 +1,4 @@
-Observability and deploy
+Megfigyelhetőség és üzembe helyezés
 
 Cél
 - Üzemeltetési átláthatóság biztosítása mérhető SLA/SLO célokkal.

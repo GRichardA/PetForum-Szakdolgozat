@@ -1,4 +1,4 @@
-# Project Plan – PetForum
+# Projekt Terv – PetForum
 
 ## Egy mondatos értékajánlat
 
@@ -10,8 +10,10 @@ A PetForum egy közösségi webplatform, ahol felhasználók eseményeket hozhat
 |---|---|---|---|
 | Bejelentkezés és szerepkörök | Productization | M | Laravel Sanctum vagy session-alapú auth implementáció, role-based route védelem, biztonságos jelszókezelés és session management. |
 | Esemény létrehozás és keresés | Value | M | Form validáció, adatbázis kapcsolatok, keresési logika (cím és leírás alapján), category dropdown implementáció. |
-| Kommentek kezelése | Value | M | Rekurzív kommentfák, felhasználói avatarok megjelenítése, AJAX vagy form-based submit, moderációs alapok. |
+| Kommentek kezelése | Value | M | Rekurzív kommentfák, felhasználói avatarok megjelenítése, AJAX vagy form-based submit, moderációs alapok, kaszkádos törlés hierarchikus szerkezetben. |
+| Komment törlés (saját + admin) | Value | M | Ownership/admin authorization, kaszkádos törlés (parent törlése törli a child kommenteket), cascading relationships az adatbázisban. |
 | Profil szerkesztés avatarral | Value | M | Képfeltöltés, szerver-oldali resizing (Intervention vagy GD), alapértelmezett SVG avatarok, storage link kezelés. |
+| Admin panel és kategória kezelés | Productization | M | Role-based middleware, admin dashboard, CRUD operációk, event moderálás, admin-only routes és views. |
 | Automata tesztek és CI | Productization | L | PHPUnit tesztek írása (unit, feature, e2e), GitHub Actions workflow konfiguráció, coverage és quality gates beállítása. |
 | Deploy és observability | Productization | L | Laravel deploy runbook, health endpoint, JSON logging, environment konfiguráció, rollback stratégia. |
 

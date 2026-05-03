@@ -42,6 +42,12 @@ Az alábbi táblázat mutatja a sprint során megvalósított, felhasználói sz
 | **US-03** | Események listázása (Kártya nézet) | Kész | Igen |
 | **US-04** | Esemény szerkesztése (`PUT` metódussal) | Kész | Igen |
 | **US-05** | Esemény törlése (`DELETE` metódussal) | Kész | Igen |
+| **US-06** | Hozzászólások (Comments) CRUD | Kész | Igen |
+| **US-07** | Hozzászólás törlés (saját + admin) | Kész | Igen |
+| **US-08** | Hozzászólások hierarchiája (válaszok) | Kész | Igen |
+| **US-09** | Admin panel és kategória kezelés | Kész | Igen |
+| **US-10** | Event moderálás (admin) | Kész | Igen |
+| **US-11** | Dark mode UI javítások | Kész | Igen |
 
 ---
 
@@ -55,3 +61,41 @@ Az alábbi táblázat mutatja a sprint során megvalósított, felhasználói sz
 4.  **Szerver indítása:** `php artisan serve`
 
 Az alkalmazás elérhető: `http://127.0.0.1:8000/events`
+
+---
+
+## 5. Tesztelési Lefedettség
+
+A Sprint 2-ben végzett tesztelés:
+
+```bash
+php artisan test
+```
+
+**Tesztelés státusza:**
+- ✅ **67 teszt sikeresen lefut**
+- 0 teszt sikertelen
+- 0 szándékos skip
+
+### Fő tesztkategóriák:
+
+| Teszt Fájl | Teszt Esetek | Tárgy |
+| :--- | :--- | :--- |
+| `tests/Feature/AuthTest.php` | 6 | Regisztráció, bejelentkezés, kijelentkezés |
+| `tests/Feature/EventTest.php` | 10 | Event CRUD, validáció, tulajdonos ellenőrzés |
+| `tests/Feature/CommentTest.php` | 8 | Hozzászólás írás, törlés (saját + admin), kaszkád törlés |
+| `tests/Feature/AdminTest.php` | 15 | Admin panel, kategória CRUD, event moderálás |
+| `tests/Feature/ProfileTest.php` | 5 | Profil szerkesztés, jelszó frissítés |
+| `tests/Feature/AvatarUploadTest.php` | 3 | Avatár feltöltés, validáció |
+| `tests/Feature/CategoryTest.php` | 5 | Kategória modell, slug generálás |
+| `tests/Feature/MiddlewareTest.php` | 5 | Admin middleware, authorization |
+| `tests/Unit/UserTest.php` | 6 | User model, admin role |
+| `tests/Unit/EventTest.php` | 5 | Event model, date casting |
+| `tests/Feature/ApiContractTest.php` | 1 | API contract tesztek |
+
+### Fontos tesztelési esetek (Comment modulhoz):
+
+1. **test_user_can_delete_own_comment** - Felhasználó törölheti saját kommentjét
+2. **test_user_cannot_delete_others_comment** - Felhasználó nem törölheti másét (403)
+3. **test_admin_can_delete_any_comment** - Admin bármelyik kommentettörölheti
+4. **test_deleting_comment_cascades_to_children** - Parent törlése törli a gyermek kommenteket

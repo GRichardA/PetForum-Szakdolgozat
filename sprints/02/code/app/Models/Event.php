@@ -25,6 +25,10 @@ class Event extends Model
         'user_id',
     ];
 
+    protected $casts = [
+        'event_date' => 'datetime',
+    ];
+
     public function category()
     {
         return $this->belongsTo(Category::class);

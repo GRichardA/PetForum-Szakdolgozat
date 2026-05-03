@@ -38,8 +38,13 @@
             <!-- Jelszó -->
             <div class="mb-4">
                 <label for="password" class="block text-sm font-medium text-gray-700 mb-1">Jelszó (min. 8 karakter)</label>
-                <input id="password" type="password" name="password" required autocomplete="new-password"
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 @error('password') border-red-500 @enderror">
+                <div class="password-input-wrap">
+                    <input id="password" type="password" name="password" required autocomplete="new-password"
+                           class="w-full pr-10 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500 @error('password') border-red-500 @enderror">
+                    <button type="button" class="password-toggle-btn" data-target="password" aria-pressed="false" title="Jelszó mutatása">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C6 3 2.73 5.11 1 8c1.73 2.89 5 5 9 5s7.27-2.11 9-5c-1.73-2.89-5-5-9-5zM10 11a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                    </button>
+                </div>
                 @error('password')
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
@@ -48,8 +53,13 @@
             <!-- Jelszó megerősítése -->
             <div class="mb-6">
                 <label for="password_confirmation" class="block text-sm font-medium text-gray-700 mb-1">Jelszó megerősítése</label>
-                <input id="password_confirmation" type="password" name="password_confirmation" required
-                       class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                <div class="password-input-wrap">
+                    <input id="password_confirmation" type="password" name="password_confirmation" required
+                           class="w-full pr-10 px-4 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500">
+                    <button type="button" class="password-toggle-btn" data-target="password_confirmation" aria-pressed="false" title="Jelszó mutatása">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C6 3 2.73 5.11 1 8c1.73 2.89 5 5 9 5s7.27-2.11 9-5c-1.73-2.89-5-5-9-5zM10 11a3 3 0 100-6 3 3 0 000 6z"/></svg>
+                    </button>
+                </div>
             </div>
 
             <div class="flex items-center justify-end">

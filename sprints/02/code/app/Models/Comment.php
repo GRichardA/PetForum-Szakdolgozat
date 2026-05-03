@@ -37,4 +37,37 @@ class Comment extends Model
     {
         return $this->hasMany(Comment::class, 'parent_id')->orderBy('created_at', 'asc');
     }
+
+    /**
+     * Recursively delete all children when comment is deleted
+     */
+    public static function boot()
+    {
+        parent::boot();
+
+        static::deleting(function ($comment) {
+            // Recursively delete all child comments
+            $comment->children()->each(function ($child) {
+                $child->delete();
+            });
+        });
+    }
+
+    /**
+     * Check if user can delete this comment (owner or admin)
+     */
+    public function canBeDeletedBy($user = null): bool
+    {
+        if (!$user) {
+            return false;
+        }
+
+        // User can delete their own comment
+        if ($this->user_id === $user->id) {
+            return true;
+        }
+
+        // Admin can delete any comment
+        return $user->is_admin === true;
+    }
 }

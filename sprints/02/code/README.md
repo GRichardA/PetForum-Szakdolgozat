@@ -41,3 +41,58 @@ Győződj meg róla, hogy telepítve van:
 # Szerver indítása
 - php artisan serve
 - http://127.0.0.1:8000
+
+---
+
+## 🔐 Admin Panel & Felhasználók
+
+### Admin fiók (alapértelmezett):
+- **Email:** admin@admin.com
+- **Jelszó:** Admin1234
+- **Hozzáférés:** http://127.0.0.1:8000/admin
+
+Az admin felület lehetővé teszi:
+- Kategóriák létrehozása és kezelése
+- Események moderálása (törlése)
+- Bármelyik hozzászólás törlése
+
+### Tesztelő fiók (lekérdezés):
+```bash
+php artisan tinker
+User::all();
+```
+
+---
+
+## 🧪 Tesztelés
+
+Összes teszt futtatása:
+```bash
+php artisan test
+```
+
+Specifikus tesztek:
+```bash
+# Csak az admin teszteket
+php artisan test tests/Feature/AdminTest.php
+
+# Csak a komment teszteket
+php artisan test tests/Feature/CommentTest.php
+
+# Egy konkrét teszt
+php artisan test --filter=test_user_can_delete_own_comment
+```
+
+**Tesztelés státusza:** 67 teszt, 0 hiba
+
+---
+
+## ✨ Fő funkciók
+
+- ✅ **Eventos CRUD:** Esemény létrehozás, szerkesztés, törlés
+- ✅ **Hozzászólások:** Kommenteket írás, válaszok, hierarchikus megjelenítés
+- ✅ **Komment törlés:** Felhasználó törölheti saját kommentjét, admin bármelyiket (kaszkádos törlés)
+- ✅ **Admin panel:** Kategória kezelés, event moderálás
+- ✅ **Profil szerkesztés:** Avatár feltöltés, jelszó módosítás
+- ✅ **Dark mode:** UI klasszis és sötét megjelenítés
+- ✅ **Tesztek:** 67 automatizált feature és unit teszt
