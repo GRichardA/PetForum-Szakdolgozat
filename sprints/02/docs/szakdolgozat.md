@@ -19,6 +19,21 @@ Ez a dokumentum nem a végleges szakdolgozat, hanem egy részletes adatgyűjtő 
 
 A PetForum egy közösségi webplatform, amely helyi állattartó közösségek számára teszi lehetővé események létrehozását, keresését, megjelenítését és kommentelését. A rendszer célja, hogy egy egyszerű, gyorsan használható, moderálható felületet biztosítson eseményekhez, profilkezeléshez, avatárokhoz és adminisztratív műveletekhez. A projekt Laravel alapokon készült, Blade sablonokkal és MySQL adattárolással.
 
+## Bevezetés
+
+A modern városi környezetben az állattartás nem csupán személyes öröm, hanem közösségi tevékenység is: gazdik találkozókat szerveznek, tapasztalatokat cserélnek és együtt oldanak meg gyakorlati problémákat (pl. oltások, kutyasétáltatók, örökbefogadási alkalmak). Ugyanakkor a helyi információk rendszerezése és gyors elérése sokszor nehézségekbe ütközik, mivel a szétszórt közösségi csatornákon megjelenő tartalmak nem mindig célzottak, rendezettek vagy megbízhatóak.
+
+A PetForum célja egy olyan közösségi webalkalmazás létrehozása, amely kifejezetten a helyi állattartó közösségek igényeire szabott eszközöket nyújt: események (találkozók, oltási akciók, vásárok, örökbefogadási események) létrehozása és felfedezése, részletes eseményoldalak, valamint a rendezvények körüli szakmai és tapasztalati alapú párbeszéd támogatása kommentek és válaszok formájában.
+
+Fontos követelmény volt a rendszer egyszerű kezelhetősége és gyors válaszideje, hiszen a felhasználók többsége mobil eszközről, rövid idő alatt szeretne releváns információkhoz jutni. A PetForum felületén található eseményekhez kategóriák és címkék rendelhetők, továbbá lehetőség van arra, hogy a közösség értékelje és visszajelzéseket adjon az eseményekről — ez elősegíti a minőségi tartalom előtérbe kerülését.
+
+Külön hangsúlyt kap a bizalom és a moderálhatóság: a webalkalmazás adminisztratív eszközöket biztosít a moderátorok számára (kategória-kezelés, eseménymoderálás, kommentek törlése), hogy a közösség tagjai számára biztonságos és kulturált kommunikációs tér alakulhasson ki. Emellett a felhasználók követhetnek egymást, profilokat hozhatnak létre, és avatárokat kezelhetnek, ami növeli az elköteleződést és elősegíti a felelősségteljes tartalommegosztást.
+
+A fejlesztés során fontos szempont volt a skálázhatóság és a jól dokumentált architektúra: a választott technológiák (Laravel, Eloquent, Blade, Tailwind) és a migráció-alapú adatkezelés lehetővé teszik a projekt reprodukálhatóságát és további bővíthetőségét. A szakdolgozatban részletesen bemutatom a megvalósítás főbb területeit (adatmodell, jogosultságkezelés, kommentfa mechanika, admin funkciók) és értékelem a rendszer minőségét automatizált tesztek és használhatósági megfontolások mentén.
+
+Végső célként a PetForum nemcsak egy technikai demonstráció, hanem egy olyan gyakorlati eszköz kialakítása volt, amely valós, helyi közösségek életét könnyítheti meg — jobb kommunikációt, könnyebb eseményszervezést és megbízható információcserét biztosítva az állattartók számára.
+
+
 ## 3. Bevezetéshez felhasználható tartalom
 
 ### 3.1 Problémafelvetés
