@@ -35,7 +35,12 @@ class CategoryTest extends TestCase
             ]);
             $this->fail('Expected integrity constraint violation');
         } catch (\Illuminate\Database\QueryException $e) {
-            $this->assertStringContainsString('UNIQUE constraint failed', $e->getMessage());
+            // Support both SQLite and MySQL error message formats
+            $message = $e->getMessage();
+            $this->assertTrue(
+                str_contains($message, 'UNIQUE constraint failed') || str_contains($message, 'Duplicate entry'),
+                "Expected unique constraint error but got: {$message}"
+            );
         }
     }
 
@@ -53,7 +58,12 @@ class CategoryTest extends TestCase
             ]);
             $this->fail('Expected integrity constraint violation');
         } catch (\Illuminate\Database\QueryException $e) {
-            $this->assertStringContainsString('UNIQUE constraint failed', $e->getMessage());
+            // Support both SQLite and MySQL error message formats
+            $message = $e->getMessage();
+            $this->assertTrue(
+                str_contains($message, 'UNIQUE constraint failed') || str_contains($message, 'Duplicate entry'),
+                "Expected unique constraint error but got: {$message}"
+            );
         }
     }
 

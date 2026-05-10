@@ -5,6 +5,8 @@ use App\Http\Controllers\EventController;
 use App\Http\Controllers\AuthController; // ÚJ: AuthController importálása
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CommentController;
+use App\Http\Controllers\PetController;
+use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\AdminController;
 
 /*
@@ -45,6 +47,13 @@ Route::controller(AuthController::class)->group(function () {
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+
+    Route::get('/profile/pets', [PetController::class, 'index'])->name('profile.pets.index');
+    Route::get('/profile/pets/create', [PetController::class, 'create'])->name('profile.pets.create');
+    Route::post('/profile/pets', [PetController::class, 'store'])->name('profile.pets.store');
+    Route::get('/profile/pets/{pet}/edit', [PetController::class, 'edit'])->name('profile.pets.edit');
+    Route::put('/profile/pets/{pet}', [PetController::class, 'update'])->name('profile.pets.update');
+    Route::delete('/profile/pets/{pet}', [PetController::class, 'destroy'])->name('profile.pets.destroy');
 });
 
 // Serve uploaded avatars through Laravel to avoid possible symlink/webserver issues
@@ -59,6 +68,10 @@ Route::get('/user-avatars/{filename}', function ($filename) {
 // Comments
 Route::post('/events/{event}/comments', [CommentController::class, 'store'])->name('events.comments.store')->middleware('auth');
 Route::delete('/events/{event}/comments/{comment}', [CommentController::class, 'destroy'])->name('events.comments.destroy')->middleware('auth');
+
+// Event registrations with pets
+Route::post('/events/{event}/registrations', [RegistrationController::class, 'store'])->name('events.registrations.store')->middleware('auth');
+Route::delete('/events/{event}/registrations/{registration}', [RegistrationController::class, 'destroy'])->name('events.registrations.destroy')->middleware('auth');
 
 // Admin Routes (csak admin felhasználók számára)
 Route::middleware(['auth', 'is_admin'])->prefix('admin')->name('admin.')->group(function () {

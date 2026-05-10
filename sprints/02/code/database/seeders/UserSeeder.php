@@ -16,7 +16,6 @@ class UserSeeder extends Seeder
             'name' => $nev,
             'email' => str()->slug($nev) . '@example.com',
             'password' => bcrypt('password'),
-            'email_verified_at' => now(),
         ]);
     }
     }

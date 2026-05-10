@@ -113,7 +113,7 @@ class AdminTest extends TestCase
     public function test_admin_can_view_events_for_moderation()
     {
         // Create events with explicit categories to avoid unique constraint issues
-        $category = Category::factory()->create(['name' => 'Moderation Test Category']);
+        $category = Category::factory()->create(['name' => 'Moderation']);
         Event::factory()->count(5)->for($category)->create();
 
         $response = $this->actingAs($this->admin)->get('/admin/events');

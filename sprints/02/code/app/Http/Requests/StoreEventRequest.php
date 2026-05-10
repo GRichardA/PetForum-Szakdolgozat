@@ -36,6 +36,11 @@ class StoreEventRequest extends FormRequest
             
             // Leírás: opcionális, szöveges
             'description' => ['nullable', 'string'],
+
+            'allowed_animal_types' => ['nullable', 'string', 'max:5000'],
+            'allowed_breeds' => ['nullable', 'string', 'max:5000'],
+            'vaccination_required' => ['nullable', 'boolean'],
+            'capacity' => ['nullable', 'integer', 'min:1'],
         ];
     }
     

@@ -15,6 +15,29 @@
         <div class="bg-white p-8 rounded-lg shadow">
         <h1 class="text-2xl font-bold mb-4">Profil szerkesztése</h1>
 
+        <div class="mb-6 rounded-lg border border-indigo-100 bg-indigo-50 p-4">
+            <div class="flex items-center justify-between gap-4">
+                <div>
+                    <h2 class="text-lg font-semibold text-gray-900">Kisállatok</h2>
+                    <p class="text-sm text-gray-600">A profilodhoz tartozó kisállatok kezelése.</p>
+                </div>
+                <a href="{{ route('profile.pets.index') }}" class="inline-flex items-center rounded-md bg-indigo-600 px-4 py-2 text-sm font-medium text-white hover:bg-indigo-700">
+                    Kisállatok kezelése
+                </a>
+            </div>
+
+            @if($user->pets->isNotEmpty())
+                <div class="mt-4 grid gap-3 md:grid-cols-2">
+                    @foreach($user->pets as $pet)
+                        <div class="rounded-md bg-white p-3 shadow-sm">
+                            <div class="font-medium text-gray-900">{{ $pet->name }}</div>
+                            <div class="text-sm text-gray-600">{{ $pet->animal_type }} · {{ $pet->breed }}</div>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+        </div>
+
         @if ($errors->any())
             <div class="mb-4 bg-red-50 border-l-4 border-red-400 p-4 rounded-md">
                 <ul class="list-disc ml-5 text-sm text-red-600">

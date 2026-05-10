@@ -72,6 +72,32 @@
                           class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2.5 resize-y">{{ old('description', $event->description) }}</textarea>
             </div>
 
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                    <label for="allowed_animal_types" class="block text-sm font-medium text-gray-700 mb-1">Elfogadott állattípusok</label>
+                    <textarea name="allowed_animal_types" id="allowed_animal_types" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2.5 resize-y" placeholder="kutya\nmacska">{{ old('allowed_animal_types', implode("\n", $event->allowed_animal_types ?? [])) }}</textarea>
+                    <p class="mt-1 text-xs text-gray-500">Egy sorba egy típus kerüljön.</p>
+                </div>
+
+                <div>
+                    <label for="allowed_breeds" class="block text-sm font-medium text-gray-700 mb-1">Elfogadott fajták</label>
+                    <textarea name="allowed_breeds" id="allowed_breeds" rows="4" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2.5 resize-y" placeholder="német juhász\nlabrador">{{ old('allowed_breeds', implode("\n", $event->allowed_breeds ?? [])) }}</textarea>
+                    <p class="mt-1 text-xs text-gray-500">Egy sorba egy fajta kerüljön.</p>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6 items-end">
+                <label class="flex items-center gap-3 rounded-md border border-gray-300 p-3">
+                    <input type="checkbox" name="vaccination_required" value="1" {{ old('vaccination_required', $event->vaccination_required) ? 'checked' : '' }}>
+                    <span class="text-sm font-medium text-gray-700">Kötelező oltás</span>
+                </label>
+
+                <div>
+                    <label for="capacity" class="block text-sm font-medium text-gray-700 mb-1">Kapacitás</label>
+                    <input type="number" min="1" name="capacity" id="capacity" value="{{ old('capacity', $event->capacity) }}" class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500 p-2.5">
+                </div>
+            </div>
+
             <div>
                 <button type="submit" class="w-full inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-150 ease-in-out">
                     Esemény Frissítése

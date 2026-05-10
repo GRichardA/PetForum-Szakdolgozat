@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB; 
 use App\Http\Requests\StoreEventRequest; // 💡 ÚJ: A validációs kérés beimportálása
+use Illuminate\Support\Str;
 
 class EventController extends Controller
 {
@@ -29,6 +30,22 @@ class EventController extends Controller
         // 💡 AZ IDŐSZŰRŐ ELTÁVOLÍTVA: Most minden eseményt betölt (múltat és jövőt)
         return Event::with('category', 'user')
                     ->orderBy('event_date', 'asc');
+    }
+
+    private function normalizePetList(?string $value): ?array
+    {
+        if ($value === null) {
+            return null;
+        }
+
+        $items = collect(preg_split('/\r\n|\r|\n/', $value))
+            ->map(fn ($item) => trim($item))
+            ->filter()
+            ->map(fn ($item) => Str::lower($item))
+            ->values()
+            ->all();
+
+        return empty($items) ? null : $items;
     }
     
     /**
@@ -128,6 +145,11 @@ class EventController extends Controller
     public function store(StoreEventRequest $request) // 💡 FRISSÍTVE: StoreEventRequest használatával
     {
         $validatedData = $request->validated(); // A StoreEventRequest már validálta az adatokat
+
+        $validatedData['allowed_animal_types'] = $this->normalizePetList($validatedData['allowed_animal_types'] ?? null);
+        $validatedData['allowed_breeds'] = $this->normalizePetList($validatedData['allowed_breeds'] ?? null);
+        $validatedData['vaccination_required'] = $request->boolean('vaccination_required');
+        $validatedData['capacity'] = $validatedData['capacity'] ?? null;
         
         // VÉDELMI FRISSÍTÉS: Hozzáadjuk a bejelentkezett felhasználó ID-jét.
         $validatedData['user_id'] = Auth::id(); 
@@ -144,8 +166,17 @@ class EventController extends Controller
     public function show(Event $event)
     {
         // Az eseményt betöltjük a kategóriával és felhasználóval a nézet számára.
-        $event->load('category', 'user', 'comments.user', 'comments.children.user');
-        return view('events.show', compact('event'));
+        $event->load('category', 'user', 'comments.user', 'comments.children.user', 'registrations.pet.user');
+
+        $userPets = Auth::check()
+            ? Auth::user()->pets()->orderBy('name')->get()
+            : collect();
+
+        $myRegistrations = Auth::check()
+            ? $event->registrations->where('user_id', Auth::id())
+            : collect();
+
+        return view('events.show', compact('event', 'userPets', 'myRegistrations'));
     }
 
     /**
@@ -173,6 +204,11 @@ class EventController extends Controller
         }
 
         $validatedData = $request->validated(); // A StoreEventRequest már validálta az adatokat
+
+        $validatedData['allowed_animal_types'] = $this->normalizePetList($validatedData['allowed_animal_types'] ?? null);
+        $validatedData['allowed_breeds'] = $this->normalizePetList($validatedData['allowed_breeds'] ?? null);
+        $validatedData['vaccination_required'] = $request->boolean('vaccination_required');
+        $validatedData['capacity'] = $validatedData['capacity'] ?? null;
 
         $event->update($validatedData);
 

@@ -21,6 +21,8 @@ class DatabaseSeeder extends Seeder
         $this->call([AdminUserSeeder::class]);
         $this->call([CategorySeeder::class]);
         $this->call([EventSeeder::class]);
+        $this->call([PetSeeder::class]);
+        $this->call([RegistrationSeeder::class]);
         $this->call([CommentSeeder::class]);
     }
 }

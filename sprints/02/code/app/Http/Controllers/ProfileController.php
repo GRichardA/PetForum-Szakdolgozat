@@ -18,7 +18,7 @@ class ProfileController extends Controller
 
     public function edit()
     {
-        $user = auth()->user();
+        $user = auth()->user()->load('pets');
         return view('profile.edit', compact('user'));
     }
 
