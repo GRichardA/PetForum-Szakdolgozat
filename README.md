@@ -1,69 +1,249 @@
-[![Review Assignment Due Date](https://classroom.github.com/assets/deadline-readme-button-22041afd0340ce965d47ae6ef1cefeee28c7c493a6346c4f15d667ab976d596c.svg)](https://classroom.github.com/a/VSPuLl7_)
-# Szakdolgozat 2.0 – Sprint 1 Kickoff
+## Az elérhető Sprint fájlok
 
-Szia! Üdv a kurzus első, legfontosabb sprintjében. A következő három hétben nem kódot írsz, hanem feltárod a valódi problémát: interjúzol, piacot elemzel és döntéseket dokumentálsz. Ha jól dolgozol, a sprint végére bizonyítod, hogy létező igényre építesz – ez a teljes projekt alapja.
-
-## Fájlstruktúra (Sprint 1)
-- `course.yaml`: hallgatói metaadatok és track választás (root szinten marad).
-- `sprints/01/prd.yaml`: a Product Requirements Document (PRD) 0.1-es verziója.
-- `sprints/01/interviews/`: legalább **5** felhasználói interjú JSON jegyzőkönyve.
-- `sprints/01/market/competitors.csv`: legalább **3** versenytárs elemzése.
-- `sprints/01/architecture/adr/`: legalább **1** Architecture Decision Record.
-- `sprints/01/ai/usage_plan.yaml`: MI-használati terv (mire és mire nem használod a copilotot).
-- `sprints/01/ai/ai_log.jsonl`: MI-használat naplója, legalább **N** bejegyzéssel (N a `course.yaml`-ból).
-- `scripts/validate.py`: helyi validátor a sprint leadása előtt.
-- `scripts/schemas/`: JSON sémák (pl. interjúk) a gépi ellenőrzéshez.
-
-> **Fontos:** minden Sprint 1-specifikus artefaktum a `sprints/01/` mappában él, a validátor is itt keresi őket.
-
-## Leadási folyamat
-1. Dolgozz a saját (forkolt) repository-ban, töltsd ki a `course.yaml`-t.
-2. Készíts Pull Requestet (`main` ágra). A PR ugyanaz, mint a beadás.
-3. A CI automatikusan lefut, és PASS / FAIL eredményt ad a sprint követelményeire.
-4. Csak a PASS státuszú PR tekinthető leadottnak.
-5. Leadás előtt futtasd helyben: `python scripts/validate.py --sprint 1`.
-
-## Heti ütemterv (javaslat)
-**1. hét – Alapozás**
-- Repository klónozása, `course.yaml` kitöltése (track dokumentálása).
-- `sprints/01/prd.yaml` első verziója: probléma, célcsoport, értékajánlat, scope.
-- `sprints/01/ai/usage_plan.yaml` megírása: célok, guardrail-ek, eszközök.
-
-**2. hét – Kutatás**
-- Végezz legalább **5** interjút; rögzítsd a jegyzőkönyveket `sprints/01/interviews/` alatt.
-- Etika: csak engedéllyel rögzíts, anonimizáld a résztvevőket (pszeudonim), PII-t ne adj át MI-nek.
-- Elemezz legalább **3** versenytársat a `sprints/01/market/competitors.csv` fájlban.
-- Hozd meg az első technológiai döntést és dokumentáld az `architecture/adr/` mappában.
-
-**3. hét – Véglegesítés és leadás**
-- Frissítsd a PRD-t az interjú- és piackutatási insightokkal.
-- Frissítsd az `ai/ai_log.jsonl`-t, hogy elérje a minimum bejegyzésszámot.
-- Futtasd a helyi validátort, javítsd a hibákat, majd készíts PR-t.
-
-## Interjú-etika és MI guardrail-ek
-- Kérj kifejezett hozzájárulást a felvételhez és jegyzeteléshez.
-- Anonimizáld a jegyzőkönyveket (csak pszeudonim és szegmens szerepeljen).
-- Ne illessz be személyazonosító adatot (PII) külső MI eszközbe.
-- Minden MI kimenetet kritikusan ellenőrizz, a végső döntés mindig a tiéd.
-
-## Definition of Done – Sprint 1
-| Tétel | Minimum elvárás | Ellenőrzés |
-| --- | --- | --- |
-| PRD (`sprints/01/prd.yaml`) | `problem.statement`, `target_audience`, `value_proposition`, `scope.in/out` kitöltve | YAML validáció + kulcsok (CI) |
-| Interjúk (`sprints/01/interviews/*.json`) | ≥ **5** fájl, séma szerint | JSON sémaellenőrzés (CI) |
-| Versenytársak (`sprints/01/market/competitors.csv`) | ≥ **3** sor a fejlécen túl | Sorok száma, fejléc (CI) |
-| ADR (`sprints/01/architecture/adr/*.md`) | ≥ **1** Markdown fájl | Fájl léte (CI) |
-| MI dokumentáció (`sprints/01/ai/*`) | Usage plan + napló ≥ **N** bejegyzés | Fájl léte + bejegyzésszám (CI) |
-| Leadás | PR a `main` ágra, zöld CI | PASS szükséges |
-
-## Használat
-```bash
-python scripts/validate.py --sprint 1
+### Fájl struktúra
 ```
-A szkript ellenőrzi, hogy minden kötelező Sprint 1 artefaktum a megfelelő helyen és formátumban megtalálható-e, továbbá az AI napló eléri-e a `course.yaml`-ban megadott minimumot.
+- sprints mappán belül van a 01 és 02.
+- 01 alap projekt feltérképezés és felkészülési dokumentumok.
+- 02 code és docs mappa, a lokális elindító fájl és a projekt terv fájl.
+- code mappa: forrás kódot tartalmazza
+- docs mappa: forrás dokumentumokat tartalmazza
+```
 
-## Forrás
-A tartalom a kurzus hivatalos Hallgatói útmutatója (Sprint 1 fejezet) alapján készült.
+## Local setup — gyors útmutató
+
+### 1) Szükséges szoftverek
+```
+- PHP 8.2+ (CLI)
+- Composer
+- Node.js
+- MySQL, Apache (Xampp)
+- Laravel (Backend)
+- Blade PHP, Tailwind CSS (Frontend)
+```
+
+### 2) Projekt klónozása
+```bash
+cd path/to/workspace
+git clone <repo-url> code
+cd code
+```
+
+### 3) Környezeti fájl
+- Másold az `.env.example`-t `.env`-re és állítsd be a DB kapcsolatot (XAMPP alappélda):
+```
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=petshop
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 4) Telepítés
+```bash
+composer install
+cp .env.example .env
+php artisan key:generate
+```
+
+### 5) Adatbázis és migrációk
+- Hozz létre egy adatbázist (pl. `petshop`) phpMyAdminban vagy MySQL CLI-vel, ezután a seeder lefutatásával feltöltheted adattal vagy akár használhatod a sql_code.txt fájl sql kódját is feltöltésre(Ezek az emberibb példák).
+```bash
+php artisan migrate
+php artisan db:seed
+```
+
+### 6) Fájlok elérése
+- Hozd létre a storage symlink-et (apache/XAMPP esetén lehet, hogy junction szükséges):
+```bash
+php artisan storage:link
+```
+- Ha a symlink nem működik Windows+Apache alatt, a projekt tartalmaz egy Laravel route-ot (`/user-avatars/{filename}`), ami kiszolgálja a feltöltött avatarokat.
+
+### 7) Szerver indítása (fejlesztés)
+```bash
+php artisan serve
+# vagy XAMPP Apache elindítása és a projekt public mappájának elérése
+```
+
+### 8) Oldal megnyitása
+```bash
+Kattints a Server running on [http://127.0.0.1:8000]. link részére vagy http://127.0.0.1:8000/events beírása a böngészőbe.
+```
+
+### Gyakori problémák
+- "Could not open input file: artisan": lépj be a projekt gyökérkönyvtárába (`cd code`), ahol az `artisan` fájl van.
+- Composer zip/zip_ext hibák Windows-on: telepítsd a 7-Zip-et és engedélyezd a `zip` PHP extension-t.
+- GD/Imagick: képfeldolgozáshoz győződj meg, hogy a `gd` vagy `imagick` extension engedélyezett (phpinfo()).
+
+
+## Telepítés teljesen üres gépre (Clean install — Windows)
+
+Ha az alábbi szoftvereket még nem telepítpted:
+
+### 1. XAMPP (PHP + MySQL + Apache csomag)
+1. Töltsd le: https://www.apachefriends.org/
+2. Telepítés Windows-ra (alapértelmezett útvonal: `C:\xampp`)
+3. XAMPP Control Panel indítása
+4. Kattints az "Apache" és "MySQL" melletti "Start" gombokra
+
+### 2. Git (verziókezeléshez)
+1. Töltsd le: https://git-scm.com/download/win
+2. Telepítés: Alapértelmezett beállítások
+
+### 3. Projekt letöltése
+```bash
+# PowerShell vagy Command Prompt megnyitása
+cd C:\xampp\htdocs
+git clone <repo-url> petshop
+cd petshop
+
+# Vagy: ZIP letöltés és kicsomagolás
+# C:\xampp\htdocs\petshop\
+```
+
+### 4. PHP és Composer verifikáció
+```bash
+php --version  # PHP 8.2+ kell
+composer --version  # Composer telepítve kell legyen
+```
+
+### 5. Projekt dependenciák
+```bash
+cd C:\xampp\htdocs\petshop
+composer install
+```
+
+### 6. Környezeti beállítás
+```bash
+# .env.example másolása
+copy .env.example .env
+
+# Vagy PowerShell-ben:
+Copy-Item .env.example -Destination .env
+```
+
+Szerkeszd a `.env` fájlt (Notepad++ vagy VS Code):
+```env
+APP_KEY=  # php artisan key:generate után kitöltődik
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=petshop
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### 7. Alkalmazás inicializálása
+```bash
+php artisan key:generate
+```
+
+### 8. Adatbázis létrehozása
+- XAMPP Control Panel → "Admin" gomb MySQL mellett (phpMyAdmin megnyitása)
+- Bal oldal: "Új" → "Adatbázis" → Név: `petshop` → Létrehozás
+
+Vagy parancssorból:
+```bash
+mysql -u root -p
+# (jelszó beírása — általában üres)
+CREATE DATABASE petshop;
+EXIT;
+```
+
+### 9. Migrációk és seeding
+```bash
+php artisan migrate --seed
+# Sikeres futáskor: "Database seeding completed successfully."
+```
+
+### 10. Storage link (fájlfeltöltéshez)
+```bash
+php artisan storage:link
+```
+
+Ha hibát kapsz, ezzel próbáld:
+```bash
+# PowerShell-ben admin módban:
+cmd /c mklink /J public\storage storage\app\public
+```
+
+### 11. Szerver indítása
+```bash
+php artisan serve
+```
+
+### 12. Böngészőben nyitás
+```
+http://localhost:8000
+```
+
+### Teszt futtatása
+```bash
+php artisan test --env=testing
+# Sikeres: "Tests: 71 passed"
+```
+
+---
+
+## Egy lépésben — XAMPP + Projekt
+
+Ha még nincs XAMPP:
+1. XAMPP letöltés és telepítés
+2. `C:\xampp\htdocs\petshop` mappába projekt
+3. XAMPP Control Panel: Apache + MySQL start
+4. PowerShell: `cd C:\xampp\htdocs\petshop && composer install`
+5. `copy .env.example .env`
+6. `php artisan key:generate && php artisan migrate --seed`
+7. `http://localhost/petshop/public` vagy `php artisan serve`
+
+---
+
+## Linux / macOS clean install
+
+### Ubuntu/Debian:
+```bash
+# Frissítés és szoftverek telepítése
+sudo apt-get update
+sudo apt-get install -y php8.2-cli php8.2-mysql php8.2-curl php8.2-mbstring mysql-server composer
+
+# Projekt letöltése
+git clone <repo-url> ~/petshop
+cd ~/petshop
+
+# Telepítés
+composer install
+cp .env.example .env
+php artisan key:generate
+
+# MySQL adatbázis
+sudo mysql -u root -p
+# CREATE DATABASE petshop;
+# EXIT;
+
+# Migrációk
+php artisan migrate --seed
+
+# Szerver
+php artisan serve
+```
+
+### macOS (Homebrew):
+```bash
+# Homebrew install (ha nincs): https://brew.sh/
+brew install php@8.2 mysql composer
+
+# Projekt és telepítés ugyanez, mint Linux
+```
+
+---
+
+További lépések
+- Ha CI-t vagy Sentry-t szeretnél, nézd meg a `docs/observability_and_deploy.md` fájlt.
+- Teljes reprodukciós útmutató: `docs/updated/12_reprodukcios_README.md`
+
+További lépések
+- Ha CI-t vagy Sentry-t szeretnél, nézd meg a `docs/observability_and_deploy.md` fájlt.
 
 ## License
 MIT
